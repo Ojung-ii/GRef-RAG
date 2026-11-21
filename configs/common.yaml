@@ -1,0 +1,62 @@
+protocol: common
+indexing:
+  max_chunk_tokens: 240
+  min_prop_tokens: 2
+  chunk_overlap_sentences: 0
+  embedding:
+    backend: transformers
+    model_path: ${NVEMBED_MODEL_PATH}
+    device: ${EMBED_DEVICE:-cuda}
+    batch_size: 32
+    normalize: true
+    trust_remote_code: true
+    local_files_only: true
+    max_seq_length: 32768
+    add_eos: true
+    query_instruction: "Given a question, retrieve passages that answer the question"
+    passage_instruction: ""
+    torch_dtype: float16
+retrieval:
+  # The legacy index keys proposition and entity store sentences and document anchors.
+  search_units: [proposition, chunk, entity]
+  # Candidate cap N_c and seed budget K_s.
+  candidate_top_k: 80
+  min_candidate_pool: 80
+  candidate_cap:
+    enabled: true
+    total_candidates: 80
+  seed_count: 4
+  context_token_budget: 3000
+  entity_anchor_score: 5.0
+  entity_anchor_prop_limit: 16
+  weights: {bm25: 0.35, dense: 0.55, entity: 0.10}
+  bm25: {top_k: 80, k1: 1.5, b: 0.75}
+  dense: {enabled: true, top_k: 80, units: [proposition, chunk]}
+  bundle_selector: semantic_marginal
+  bridge:
+    enabled: true
+    selection: residual_lexical
+    max_mentions_per_prop: 3
+    max_bridge_titles_per_seed: 2
+    max_bridge_props_per_title: 2
+    skip_ambiguous_aliases: true
+    min_alias_tokens: 2
+    remove_self_mentions: true
+    ordering: anchor_chain_aware
+    anchor_constrained: true
+    multi_anchor_bundle: true
+    demote_generic_relation_titles: true
+    use_automaton: true
+  refine: {per_entity_propositions: 4, per_entity_chunks: 2, max_bundles: 6}
+generation:
+  layout: common
+  top_bundles: 4  # Rendering budget B
+  max_context_chars: 16000
+  base_url: ${GREF_RAG_LLM_BASE_URL:-http://127.0.0.1:8011/v1}
+  model: Qwen/Qwen2.5-7B-Instruct
+  tokenizer: ${GREF_RAG_TOKENIZER:-Qwen/Qwen2.5-7B-Instruct}
+  temperature: 0.0
+  top_p: 1.0
+  max_new_tokens: 64
+  seed: 20260709
+  timeout_s: 120

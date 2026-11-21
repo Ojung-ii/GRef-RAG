@@ -1,0 +1,503 @@
+{
+  "scope": {
+    "common": "Fresh NV-Embed query encoding, retrieval and Qwen generation with the saved dense passage index",
+    "native": "Fresh Qwen generation from saved HotpotQA contexts whose rendered text and prompt hashes match the archived run.",
+    "fresh_index": "HotpotQA corpus and mention graph rebuilt from pinned public data. Full retrieval used the saved dense passage vectors.",
+    "datasets": "All four release datasets and 2Wiki v1.1 alias file verified against pinned public sources"
+  },
+  "protocols": {
+    "common": {
+      "live": {
+        "n": 1000,
+        "em": 0.323,
+        "f1": 0.39211549070124924,
+        "context_tokens": 479.686,
+        "recall_at_5": 0.924,
+        "retrieval_seconds": 0.24518779291841203,
+        "generation_seconds": 0.14100519269908546
+      },
+      "paper": {
+        "em": 0.324,
+        "f1": 0.39294406212982064,
+        "context_tokens": 479.686
+      },
+      "parity": {
+        "n": 1000,
+        "first_differing_stage": "prediction_sha256",
+        "difference_counts": {
+          "context_sha256": 0,
+          "prompt_sha256": 0,
+          "context_tokens": 0,
+          "full_input_tokens": 0,
+          "prediction_sha256": 32,
+          "em": 9,
+          "f1": 13
+        }
+      },
+      "recall_provenance": "Recomputed with archived evidence bundles tied to all 1000 identical context hashes"
+    },
+    "native": {
+      "live": {
+        "n": 1000,
+        "em": 0.511,
+        "f1": 0.6351312696591335,
+        "full_input_tokens": 734.315,
+        "recall_at_5": 0.9425,
+        "retrieval_seconds": null,
+        "generation_seconds": 0.14228275727160508
+      },
+      "paper": {
+        "em": 0.507,
+        "f1": 0.6290381747423544,
+        "full_input_tokens": 734.315
+      },
+      "parity": {
+        "n": 1000,
+        "first_differing_stage": "prediction_sha256",
+        "difference_counts": {
+          "context_sha256": 0,
+          "prompt_sha256": 0,
+          "context_tokens": 0,
+          "full_input_tokens": 0,
+          "prediction_sha256": 24,
+          "em": 10,
+          "f1": 18
+        }
+      }
+    }
+  },
+  "fresh_graph": {
+    "matched_graph_files": {
+      "chunks.jsonl": true,
+      "entities.json": true,
+      "prop_to_mentioned_titles.json": true,
+      "propositions.jsonl": true,
+      "title_aliases.json": true,
+      "title_mentions.jsonl": true,
+      "title_to_mentioning_props.json": true
+    },
+    "build": {
+      "corpus_sha256": "9333647b922382776cd2cb02893b390d77984df85a91bfa8be411284978aca7d",
+      "indexing_seconds": 7.803986537037417,
+      "graph_seconds": 7.8039735950296745,
+      "mention_edge_seconds": 2.705904,
+      "dense_seconds": 1.294200774282217e-05,
+      "storage_bytes": 27360108,
+      "timing_boundary": "graph and dense construction including writes; corpus loading excluded"
+    },
+    "integrated_smoke": {
+      "n": 5,
+      "recall_at_5": 0.9,
+      "retrieval_seconds": 0.17775014641229064,
+      "generation_seconds": 0.10090092038735747,
+      "indexing_seconds": 7.803986537037417
+    }
+  },
+  "runtime": {
+    "client_python": "3.11.15",
+    "client_torch": "2.6.0+cu124",
+    "client_transformers": "4.57.6",
+    "generator_vllm": "0.19.0",
+    "gpu": "NVIDIA H100 PCIe",
+    "generation_dtype": "bfloat16",
+    "generator_model_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+    "embedding_model_revision": "3fa59658547db50a1e8e3346cf057fd0c77ed6ef",
+    "server_settings": {
+      "enforce_eager": true,
+      "gpu_memory_utilization": 0.26,
+      "max_model_len": 16500,
+      "rope_scaling": "YaRN factor 2",
+      "max_num_seqs": 16,
+      "max_num_batched_tokens": 8192
+    }
+  },
+  "recall_adapters": {
+    "bm25/hotpotqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.7515
+    },
+    "bm25/2wiki": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.662
+    },
+    "bm25/musique": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.44566666666666666
+    },
+    "bm25/popqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.401
+    },
+    "dense-rag/hotpotqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.944
+    },
+    "dense-rag/2wiki": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.76525
+    },
+    "dense-rag/musique": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.6933333333333334
+    },
+    "dense-rag/popqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.511
+    },
+    "hipporag2/hotpotqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.951
+    },
+    "hipporag2/2wiki": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.8975
+    },
+    "hipporag2/musique": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.7218333333333333
+    },
+    "hipporag2/popqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.5165
+    },
+    "lightrag/hotpotqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.9216547619047619
+    },
+    "lightrag/2wiki": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.80255
+    },
+    "lightrag/musique": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.5401920971125538
+    },
+    "lightrag/popqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.3547463927168177
+    },
+    "kg2rag/hotpotqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.935
+    },
+    "kg2rag/2wiki": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.781
+    },
+    "kg2rag/musique": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.6990833333333333
+    },
+    "kg2rag/popqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.517
+    },
+    "pathrag/hotpotqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.4735
+    },
+    "pathrag/2wiki": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.5105
+    },
+    "pathrag/musique": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.36875
+    },
+    "pathrag/popqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.353
+    },
+    "gref-paper/hotpotqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.962
+    },
+    "gref-paper/2wiki": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.86325
+    },
+    "gref-paper/musique": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.7518333333333334
+    },
+    "gref-paper/popqa": {
+      "n": 1000,
+      "exact": 1000,
+      "mean": 0.544
+    },
+    "raptor/hotpotqa": {
+      "n": 1000,
+      "exact": 1000
+    },
+    "raptor/2wiki": {
+      "n": 1000,
+      "exact": 1000
+    },
+    "raptor/musique": {
+      "n": 1000,
+      "exact": 1000
+    },
+    "raptor/popqa": {
+      "n": 1000,
+      "exact": 1000
+    }
+  },
+  "serving_setting_replay": {
+    "common": {
+      "disagreeing_n": 32,
+      "control_n": 16,
+      "disagreements_recovered": 25,
+      "previously_matching_control_matches": 16,
+      "repeat_matches": 45
+    },
+    "native": {
+      "disagreeing_n": 24,
+      "control_n": 16,
+      "disagreements_recovered": 15,
+      "previously_matching_control_matches": 16,
+      "repeat_matches": 37
+    }
+  },
+  "common_saved_em_f1": {
+    "bm25/hotpotqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "bm25/2wiki": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "bm25/musique": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "bm25/popqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "dense-rag/hotpotqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "dense-rag/2wiki": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "dense-rag/musique": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "dense-rag/popqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "raptor/hotpotqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "raptor/2wiki": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "raptor/musique": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "raptor/popqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "hipporag2/hotpotqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "hipporag2/2wiki": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "hipporag2/musique": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "hipporag2/popqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "lightrag/hotpotqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "lightrag/2wiki": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "lightrag/musique": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "lightrag/popqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "kg2rag/hotpotqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "kg2rag/2wiki": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "kg2rag/musique": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "kg2rag/popqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "pathrag/hotpotqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "pathrag/2wiki": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "pathrag/musique": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "pathrag/popqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "gref-rag/hotpotqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "gref-rag/2wiki": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "gref-rag/musique": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    },
+    "gref-rag/popqa": {
+      "n": 1000,
+      "matched_em_f1": 1000
+    }
+  },
+  "alternate_server": {
+    "settings": {
+      "enforce_eager": false,
+      "gpu_memory_utilization": 0.35,
+      "max_model_len": 16500,
+      "rope_scaling": "model default",
+      "prefix_caching": true
+    },
+    "scope": "Replayed the same 1,000 inputs per HotpotQA protocol with the server arguments recorded for a historical run.",
+    "protocols": {
+      "common": {
+        "live": {
+          "em": 0.322,
+          "f1": 0.38985651634227486,
+          "context_tokens": 479.686,
+          "full_input_tokens": 614.929,
+          "recall_at_5": 0.924,
+          "generation_seconds": 0.09113655298488448,
+          "n": 1000
+        },
+        "parity": {
+          "n": 1000,
+          "first_differing_stage": "prediction_sha256",
+          "difference_counts": {
+            "context_sha256": 0,
+            "prompt_sha256": 0,
+            "context_tokens": 0,
+            "full_input_tokens": 0,
+            "prediction_sha256": 18,
+            "em": 6,
+            "f1": 9
+          }
+        }
+      },
+      "native": {
+        "live": {
+          "em": 0.508,
+          "f1": 0.6312227218945485,
+          "context_tokens": 434.695,
+          "full_input_tokens": 734.315,
+          "recall_at_5": 0.9425,
+          "generation_seconds": 0.10745811950456118,
+          "n": 1000
+        },
+        "parity": {
+          "n": 1000,
+          "first_differing_stage": "prediction_sha256",
+          "difference_counts": {
+            "context_sha256": 0,
+            "prompt_sha256": 0,
+            "context_tokens": 0,
+            "full_input_tokens": 0,
+            "prediction_sha256": 14,
+            "em": 7,
+            "f1": 13
+          }
+        }
+      }
+    }
+  },
+  "prefix_caching_probe": {
+    "n": 24,
+    "previously_changed_n": 18,
+    "warm_vs_fresh_prefix_differences": 3,
+    "cold_pair_matches": 24,
+    "previously_changed_recovered_with_fresh_prefix": 3
+  },
+  "popqa_native_question_only": {
+    "scope": "Fresh Qwen generation on native renderings of the existing question-only PopQA retrieval results.",
+    "original_artifact_status": "Historical native retrieval could read benchmark subject and Wikipedia-title fields.",
+    "differences_versus_historical": {
+      "context_sha256": 437,
+      "prompt_sha256": 437,
+      "prediction_sha256": 63
+    },
+    "live": {
+      "n": 1000,
+      "em": 0.477,
+      "f1": 0.6056715070876836,
+      "context_tokens": 727.204,
+      "full_input_tokens": 1013.928,
+      "recall_at_5": 0.5475,
+      "generation_seconds": 0.114933645832818
+    }
+  }
+}

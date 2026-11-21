@@ -1,0 +1,16 @@
+extends: common.yaml
+protocol: native
+generation:
+  layout: chain_paragraph
+  dataset_layouts:
+    musique: chain_dedup
+    popqa: chain_dedup
+  top_bundles: 6
+  seed: 20260803
+  # Literal used in the executed prompts. The appendix displays GRef-RAG.
+  native_role: ACE-RAG
+  native_default_seeds:
+    hotpotqa: 20260709
+    2wiki: 20260709
+    musique: null
+    popqa: null

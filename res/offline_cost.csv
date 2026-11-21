@@ -1,0 +1,7 @@
+method,dataset,indexing_seconds,storage_mib,update_1pct_seconds,update_kind,hardware_matched
+gref-rag,2wiki,333,465,340,rebuild,False
+kg2rag,2wiki,961,110,913,rebuild,False
+hipporag2,2wiki,1025,579,1021,rebuild,False
+raptor,2wiki,1542,48,1405,rebuild,False
+lightrag,2wiki,106460,2369,2024,append,False
+pathrag,2wiki,9066,2080,192.4,append,False

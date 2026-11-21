@@ -1,0 +1,55 @@
+{
+  "n": 1000,
+  "first_differing_stage": "prediction_sha256",
+  "difference_counts": {
+    "context_sha256": 0,
+    "prompt_sha256": 0,
+    "context_tokens": 0,
+    "full_input_tokens": 0,
+    "prediction_sha256": 14,
+    "em": 7,
+    "f1": 13
+  },
+  "difference_ids": {
+    "prediction_sha256": [
+      "5a72b2dc5542992359bc3173",
+      "5ae234e85542994d89d5b395",
+      "5a7bc1bf55429927d897c033",
+      "5ae1e2765542997f29b3c162",
+      "5abbb0655542992ccd8e7f72",
+      "5abbc96755429931dba1452c",
+      "5add56ad5542992200553abf",
+      "5ae038e955429942ec259c4d",
+      "5a732ca45542992359bc325d",
+      "5a81f10055429903bc27ba06",
+      "5a8a44c65542996c9b8d5e85",
+      "5ab915ad55429919ba4e239c",
+      "5adea61155429939a52fe922",
+      "5a8a764555429930ff3c0de1"
+    ],
+    "em": [
+      "5a72b2dc5542992359bc3173",
+      "5a7bc1bf55429927d897c033",
+      "5add56ad5542992200553abf",
+      "5a732ca45542992359bc325d",
+      "5a8a44c65542996c9b8d5e85",
+      "5adea61155429939a52fe922",
+      "5a8a764555429930ff3c0de1"
+    ],
+    "f1": [
+      "5a72b2dc5542992359bc3173",
+      "5ae234e85542994d89d5b395",
+      "5a7bc1bf55429927d897c033",
+      "5ae1e2765542997f29b3c162",
+      "5abbc96755429931dba1452c",
+      "5add56ad5542992200553abf",
+      "5ae038e955429942ec259c4d",
+      "5a732ca45542992359bc325d",
+      "5a81f10055429903bc27ba06",
+      "5a8a44c65542996c9b8d5e85",
+      "5ab915ad55429919ba4e239c",
+      "5adea61155429939a52fe922",
+      "5a8a764555429930ff3c0de1"
+    ]
+  }
+}

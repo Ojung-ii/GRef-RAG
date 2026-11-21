@@ -1,0 +1,104 @@
+{
+  "hotpotqa": {
+    "size": 1000,
+    "counts": {
+      "official_refs_aligned": 1000,
+      "common_context_hashes": 1000,
+      "common_prompt_hashes": 1000,
+      "native_rerender_hashes": 1000,
+      "native_benchmark_question_match": 1000,
+      "native_prompt_hashes": 1000
+    },
+    "native_route_counts": {
+      "default": 854,
+      "binary_comparison": 111,
+      "entity_choice_comparison": 35
+    },
+    "common_em_f1_context_tokens": [
+      0.324,
+      0.39294406212982064,
+      479.686
+    ],
+    "native_em_f1_full_input_tokens": [
+      0.507,
+      0.6290381747423544,
+      734.315
+    ]
+  },
+  "2wiki": {
+    "size": 1000,
+    "counts": {
+      "official_refs_aligned": 1000,
+      "common_context_hashes": 1000,
+      "common_prompt_hashes": 1000,
+      "native_rerender_hashes": 1000,
+      "native_benchmark_question_match": 1000,
+      "native_prompt_hashes": 1000
+    },
+    "native_route_counts": {
+      "default": 521,
+      "entity_choice_comparison": 369,
+      "binary_comparison": 110
+    },
+    "common_em_f1_context_tokens": [
+      0.152,
+      0.17338584415584415,
+      483.694
+    ],
+    "native_em_f1_full_input_tokens": [
+      0.492,
+      0.5547444948842007,
+      761.257
+    ]
+  },
+  "musique": {
+    "size": 1000,
+    "counts": {
+      "official_refs_aligned": 1000,
+      "common_context_hashes": 1000,
+      "common_prompt_hashes": 1000,
+      "native_rerender_hashes": 1000,
+      "native_benchmark_question_match": 1000,
+      "native_prompt_hashes": 1000
+    },
+    "native_route_counts": {
+      "default": 981,
+      "binary_comparison": 17,
+      "entity_choice_comparison": 2
+    },
+    "common_em_f1_context_tokens": [
+      0.058,
+      0.08347428571428571,
+      558.151
+    ],
+    "native_em_f1_full_input_tokens": [
+      0.201,
+      0.29067139141388365,
+      1015.359
+    ]
+  },
+  "popqa": {
+    "size": 1000,
+    "counts": {
+      "official_refs_aligned": 1000,
+      "common_context_hashes": 1000,
+      "common_prompt_hashes": 1000,
+      "native_rerender_hashes": 1000,
+      "native_benchmark_question_match": 1000,
+      "native_prompt_hashes": 1000
+    },
+    "native_route_counts": {
+      "default": 1000
+    },
+    "common_em_f1_context_tokens": [
+      0.403,
+      0.5017487817737818,
+      522.236
+    ],
+    "native_em_f1_full_input_tokens": [
+      0.472,
+      0.6053770626432391,
+      988.006
+    ]
+  }
+}

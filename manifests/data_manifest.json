@@ -1,0 +1,38 @@
+{
+  "release": "osunlp/HippoRAG_2",
+  "revision": "488c53fb27dd28f70412e18004bd49f791600574",
+  "datasets": {
+    "2wiki": {
+      "qa_sha256": "895cba294064df0c3302c76847b1fc08d99b5619f7663dfaa3b65cd780f1cac4",
+      "corpus_sha256": "9d6e352952aafb18dab22bf8195039461321a44a949df902ae83bce134ad238a",
+      "qa_record_count": 1000,
+      "corpus_record_count": 6119,
+      "query_id_set_hash": "5e862f0a12dcf610b449192de69ffb268dfee54eb7efe8c82860edb461ad02a9",
+      "query_order_hash": "098608f17f74a570031cd720e163db66be81305a8e6a7d0a53f439801e416316"
+    },
+    "hotpotqa": {
+      "qa_sha256": "3ad9c0bcbf93f41d7004ca6007049c904d2605046b314a2f7ecfb379c64cba6d",
+      "corpus_sha256": "9333647b922382776cd2cb02893b390d77984df85a91bfa8be411284978aca7d",
+      "qa_record_count": 1000,
+      "corpus_record_count": 9811,
+      "query_id_set_hash": "7f71eafa9df33702fdc9b6f723c59a471ac43d0984cfd8c774692fbcb6165b28",
+      "query_order_hash": "d7b724aa0e6c19f90a6253ff3d111be0272952c0dc341fefca3808aa1b3d0c6c"
+    },
+    "musique": {
+      "qa_sha256": "98ed4e21d3076532f6388d42320fb809599c63a0d8dffca8ece5e41922be6b46",
+      "corpus_sha256": "73157a03ce3f0b1a5673dd5dc12bb970c24976dbffc688af9eecdd758c97ffcb",
+      "qa_record_count": 1000,
+      "corpus_record_count": 11656,
+      "query_id_set_hash": "4d0d38b58ec4bb95e582c6825fb52cca20b867695cb58b715ee1855d4232e16d",
+      "query_order_hash": "207a156a811e884d6b950757de50cd3394fc00ff0991b102f0d22f0bbed19e44"
+    },
+    "popqa": {
+      "qa_sha256": "e0874255f9acff5f2de0a7b8ab9782558db31d9a364fee6c84519510955880b2",
+      "corpus_sha256": "16ccbb71d84c5c6e6d4073ef9b860a79f8f2c3869ce8f1ade85d3285c440ccd8",
+      "qa_record_count": 1000,
+      "corpus_record_count": 8676,
+      "query_id_set_hash": "0035b9ebd097c442e012c80622d733997db7c8cc3c399ab21489bd72e10b7847",
+      "query_order_hash": "1c05d729976d76676db7cadce0467a0987fdbe04d5290115eb8b2877e8f9bc1f"
+    }
+  }
+}
