@@ -53,11 +53,11 @@ def measure_value(row, fields, milliseconds=()):
     return None
 
 
-def aggregate(rows, protocol: str, index_metrics=None):
+def aggregate(rows, protocol: str, index_metrics=None, *, recall_metric: str = "recall_at_5"):
     fields = (
         "em",
         "f1",
-        "recall_at_5",
+        recall_metric,
         "context_tokens",
         "full_input_tokens",
         "output_tokens",
@@ -119,6 +119,9 @@ def evaluate_file(
     if provenance_by_id is not None and provenance_by_id.keys() != expected:
         raise ValueError("Provenance and prediction cohorts differ")
     adapter = ADAPTERS[method]
+    recall_metric = (
+        "support_title_coverage" if method == "gref-paper" and dataset != "popqa" else "recall_at_5"
+    )
     records = []
     for example in examples:
         row = predictions_by_id[example.id]
@@ -150,7 +153,7 @@ def evaluate_file(
                 "query_id": example.id,
                 "em": em,
                 "f1": f1,
-                "recall_at_5": recall.value,
+                recall_metric: recall.value,
                 "recall_hits": recall.hits,
                 "recall_gold": recall.total,
                 "context_tokens": measure_value(
@@ -192,9 +195,10 @@ def evaluate_file(
         "protocol": protocol,
         "gold_policy": gold_policy,
         "recall_adapter": method,
+        "recall_metric": recall_metric,
         "recall_retrieval_unit": adapter.retrieval_unit,
         "recall_gold_unit": adapter.gold_unit,
-        **aggregate(records, protocol, index_metrics),
+        **aggregate(records, protocol, index_metrics, recall_metric=recall_metric),
         "per_query": records,
     }
     with atomic_output(output) as stream:

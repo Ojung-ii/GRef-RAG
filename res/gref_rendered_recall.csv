@@ -1,0 +1,5 @@
+method,dataset,n,recall_at_5,adapter,provenance
+gref-rag,hotpotqa,1000,0.924,gref-rag,saved common-prompt evidence matched to rendered context
+gref-rag,2wiki,1000,0.8571666666666666,gref-rag,saved common-prompt evidence matched to rendered context
+gref-rag,musique,1000,0.6908333333333333,gref-rag,saved common-prompt evidence matched to rendered context
+gref-rag,popqa,1000,0.544,gref-rag,saved common-prompt evidence matched to rendered context

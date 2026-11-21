@@ -499,5 +499,76 @@
       "recall_at_5": 0.5475,
       "generation_seconds": 0.114933645832818
     }
+  },
+  "fresh_dense_hotpotqa": {
+    "dataset": "hotpotqa",
+    "protocol": "common",
+    "scope": "Rebuild the graph and both passage embedding indexes from pinned public data, then replay the first 50 manifest queries without generation.",
+    "embedding": {
+      "model_revision": "3fa59658547db50a1e8e3346cf057fd0c77ed6ef",
+      "compute_dtype": "float16",
+      "batch_size": 8,
+      "archived_config_batch_size": 32,
+      "torch": "2.6.0+cu124",
+      "transformers": "4.57.6",
+      "gpu": "NVIDIA H100 PCIe"
+    },
+    "index_metrics": {
+      "corpus_sha256": "9333647b922382776cd2cb02893b390d77984df85a91bfa8be411284978aca7d",
+      "indexing_seconds": 917.0424407310202,
+      "graph_seconds": 5.920768389012665,
+      "mention_edge_seconds": 2.018527,
+      "dense_seconds": 911.1216723420075,
+      "storage_bytes": 888646658,
+      "timing_boundary": "graph and dense construction including writes; corpus loading excluded"
+    },
+    "matched_graph_files": {
+      "chunks.jsonl": true,
+      "entities.json": true,
+      "prop_to_mentioned_titles.json": true,
+      "propositions.jsonl": true,
+      "title_aliases.json": true,
+      "title_mentions.jsonl": true,
+      "title_to_mentioning_props.json": true
+    },
+    "dense_matrices": {
+      "proposition": {
+        "shape": [
+          42537,
+          4096
+        ],
+        "dtype": "float32",
+        "aligned_ids": true,
+        "identical_rows": 0,
+        "max_absolute_difference": 0.0021367622539401054,
+        "minimum_cosine": 0.9999842047691345,
+        "mean_cosine": 0.9999990893228043
+      },
+      "chunk": {
+        "shape": [
+          9985,
+          4096
+        ],
+        "dtype": "float32",
+        "aligned_ids": true,
+        "identical_rows": 0,
+        "max_absolute_difference": 0.0011383071541786194,
+        "minimum_cosine": 0.9999940395355225,
+        "mean_cosine": 0.9999993273062173
+      }
+    },
+    "retrieval": {
+      "n": 50,
+      "differences_from_paper_reference": {
+        "context_sha256": 0,
+        "prompt_sha256": 0,
+        "context_tokens": 0
+      },
+      "differences_from_release_retrieval_on_archived_index": {
+        "selected_seed_sha256": 0,
+        "bundle_candidate_sha256": 0
+      },
+      "source_title_differences_from_rescored_archived_evidence": 0
+    }
   }
 }

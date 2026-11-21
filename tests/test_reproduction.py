@@ -1,4 +1,5 @@
 import json
+import sys
 from pathlib import Path
 
 from gref_rag.data import CorpusDoc, QAExample
@@ -82,3 +83,57 @@ def test_pathrag_prefers_guarded_paths_to_stored_convenience_fields(tmp_path):
     output = tmp_path / "provenance.jsonl"
     export_pathrag(paths, tmp_path, manifest, output)
     assert json.loads(output.read_text())["ranked_source_titles"] == ["After Guard"]
+
+
+def test_run_cli_dispatches_without_an_evaluate_only_adapter(monkeypatch, tmp_path):
+    from gref_rag import __main__, pipeline
+
+    cfg = tmp_path / "common.yaml"
+    cfg.write_text("protocol: common\n")
+    called = []
+
+    def run(args, config):
+        called.append((args.dataset, args.retrieval_only, config["protocol"]))
+
+    monkeypatch.setattr(pipeline, "run_experiment", run)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "gref_rag",
+            "run",
+            "--dataset",
+            "hotpotqa",
+            "--config",
+            str(cfg),
+            "--index-dir",
+            str(tmp_path / "index"),
+            "--output",
+            str(tmp_path / "output"),
+            "--retrieval-only",
+        ],
+    )
+    __main__.main()
+    assert called == [("hotpotqa", True, "common")]
+
+
+def test_historical_uncapped_coverage_has_its_own_metric_key(monkeypatch, tmp_path):
+    from gref_rag.evaluation import metrics
+
+    example = QAExample("q", "Question?", ["answer"], support_titles=["Gold"])
+    monkeypatch.setattr(metrics, "read_benchmark", lambda root, dataset: ([example], []))
+    predictions = tmp_path / "predictions.jsonl"
+    bundles = [{"anchor_title": f"Title {ordinal}"} for ordinal in range(5)]
+    bundles.append({"anchor_title": "Gold"})
+    predictions.write_text(json.dumps({"query_id": "q", "evidence_bundles": bundles}) + "\n")
+    result = metrics.evaluate_file(
+        predictions,
+        tmp_path / "metrics.json",
+        tmp_path,
+        "hotpotqa",
+        method="gref-paper",
+        retrieval_only=True,
+    )
+    assert result["recall_metric"] == "support_title_coverage"
+    assert result["support_title_coverage"] == result["per_query"][0]["support_title_coverage"] == 1
+    assert "recall_at_5" not in result

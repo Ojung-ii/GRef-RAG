@@ -2,11 +2,13 @@
 
 **Is Broader Retrieval Always Better for GraphRAG?**
 
-Junghyun Oh, Jin-woo Lee, and Sungsu Lim · EACL 2026
+Junghyun Oh, Jin-woo Lee, and Sungsu Lim
 
 GRef-RAG (Graph Retrieval with Evidence Refinement for RAG) retrieves document anchors, chunks, and sentences in **Global Seed Search**. **Local Refinement** expands mention-linked evidence chains, assembles evidence bundles, and reranks them using semantic coverage before rendering the QA context.
 
 ![The GRef-RAG framework from the camera-ready paper](docs/framework.png)
+
+This release runs GRef-RAG in the common-prompt and method-native settings on the four Wikipedia-based cohorts. It includes fixed-cohort baseline scoring adapters and saved scores for replaying the main comparisons. The evaluation guide describes how these artifacts correspond to manuscript results. [Reproduction scope](docs/evaluation.md#reproduction-scope)
 
 ## Installation
 
@@ -33,6 +35,8 @@ vllm serve Qwen/Qwen2.5-7B-Instruct \
 ```
 
 In the client environment, set `GREF_RAG_LLM_BASE_URL` if the endpoint differs from `http://127.0.0.1:8011/v1`. Use `VLLM_API_KEY` if the endpoint requires authentication. Set `CUDA_VISIBLE_DEVICES` separately for the two processes, or run retrieval and generation in separate phases on one GPU.
+
+Pass `NVEMBED_BATCH_SIZE=8` to the `index` command if the default batch of 32 exceeds available GPU memory. Keep the embedding model, precision, and batch size in your run record when comparing newly built indexes.
 
 ## Data
 
@@ -71,6 +75,8 @@ Native reproduction uses the exact historical role string and per-dataset render
 
 Each run writes `predictions.jsonl`, `metrics.json`, and `run_manifest.json`. The evaluator reports EM, token-level F1, source recall, context and full-input tokens, F1 per 1,000 context tokens, online latency, and index-build time where measured. JSON EM/F1 are fractions. Index-build timing is measured by `index` and reused with the same index.
 
+To replay the main paired F1 comparisons on a CPU, install `requirements.txt` and run `python -m gref_rag statistics --output outputs/main-paired-statistics.csv`. This replay uses the released score ledger and fixed query IDs.
+
 Use `evaluate` with `--recall-adapter` to score saved baseline predictions, or `generate` with the common configuration to apply the same QA prompt to saved baseline contexts. Align incoming artifacts to the fixed benchmark IDs. See [adapter formats and comparison caveats](docs/evaluation.md) and [official results and parity checks](res/README.md).
 
 | GRef-RAG | Common EM / F1 (%) | Context tokens | Native EM / F1 (%) | Full-input tokens |
@@ -78,9 +84,9 @@ Use `evaluate` with `--recall-adapter` to score saved baseline predictions, or `
 | HotpotQA | 32.4 / 39.3 | 480 | 50.7 / 62.9 | 734 |
 | 2Wiki | 15.2 / 17.3 | 484 | 49.2 / 55.5 | 761 |
 | MuSiQue | 5.8 / 8.3 | 558 | 20.1 / 29.1 | 1015 |
-| PopQA | 40.3 / 50.2 | 522 | 47.2 / 60.5 | 988 |
+| PopQA | 40.3 / 50.2 | 522 | 47.7 / 60.6 | 1014 |
 
-The PopQA native row above is the archived camera-ready result. The release applies question-only retrieval, including on PopQA, and reports the updated PopQA run in [the validation record](res/live_validation.json).
+The PopQA native row uses the question-only rerun on the same 1,000 queries. The camera-ready archive reports 47.2 EM, 60.54 F1, and 988.006 full-input tokens from the earlier run, which allowed benchmark subject names and Wikipedia titles to seed retrieval. The common-prompt PopQA result already uses question-only retrieval. [PopQA correction and validation](res/README.md#live-validation)
 
 ## Code map
 

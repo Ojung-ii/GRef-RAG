@@ -99,8 +99,24 @@ def main() -> None:
     check.add_argument("--reference", type=Path, required=True)
     check.add_argument("--output", type=Path, required=True)
 
+    statistics = commands.add_parser(
+        "statistics", help="recompute the paper's paired common-prompt F1 tests"
+    )
+    statistics.add_argument("--ledger", type=Path, default=Path("res/common_query_scores.csv"))
+    statistics.add_argument("--output", type=Path, required=True)
+
     args = parser.parse_args()
-    if args.command == "compare":
+    if args.command == "statistics":
+        from .evaluation.statistics import write_common_statistics
+
+        rows = write_common_statistics(args.ledger, args.output)
+        print_summary(
+            {
+                "comparisons": len(rows),
+                "holm_rejections": sum(row["holm_reject"] for row in rows),
+            }
+        )
+    elif args.command == "compare":
         from .evaluation.parity import compare
 
         result = compare(args.predictions, args.metrics, args.reference, args.output)
@@ -126,10 +142,6 @@ def main() -> None:
     elif args.command == "run":
         from .pipeline import run_experiment
 
-        if args.recall_adapter != "gref-rag":
-            parser.error(
-                "run produces GRef-RAG provenance. Select a baseline adapter with evaluate."
-            )
         run_experiment(args, load_yaml(args.config))
     elif args.command == "generate":
         from .pipeline import generate_from_contexts
