@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 
 from gref_rag.data import CorpusDoc, QAExample
+from gref_rag.evaluation.budgets import pack_context
 from gref_rag.evaluation.metrics import answer_scores
 from gref_rag.evaluation.recall import ADAPTERS
 from gref_rag.graph import EvidenceGraph
@@ -10,6 +11,13 @@ from gref_rag.io_utils import load_yaml
 from gref_rag.prompts import build_prompt
 from gref_rag.rendering import render_evidence, source_titles
 from gref_rag.retrieval import GRefRagRetriever
+
+
+def test_budget_packing_skips_whole_units_and_counts_separators():
+    units = [("a", "early"), ("b", "long middle"), ("c", "end"), ("d", "late")]
+    text, ids = pack_context(units, "\n\n", len, 10)
+    assert text == "early\n\nend"
+    assert ids == ["a", "c"]
 
 
 def test_question_only_chain_renders_and_attributes_a_source():

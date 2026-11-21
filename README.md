@@ -8,7 +8,7 @@ GRef-RAG (Graph Retrieval with Evidence Refinement for RAG) retrieves document a
 
 ![The GRef-RAG framework from the camera-ready paper](docs/framework.png)
 
-This release runs GRef-RAG in the common-prompt and method-native settings on the four Wikipedia-based cohorts. It includes fixed-cohort baseline scoring adapters and saved scores for replaying the main comparisons. The evaluation guide describes how these artifacts correspond to manuscript results. [Reproduction scope](docs/evaluation.md#reproduction-scope)
+This release runs GRef-RAG in the common-prompt and method-native settings on the four Wikipedia-based cohorts. It includes baseline scoring adapters, matched-budget controls, and saved scores for replaying the main comparisons. [Reproduction scope](docs/evaluation.md#reproduction-scope)
 
 ## Installation
 
@@ -77,6 +77,8 @@ Each run writes `predictions.jsonl`, `metrics.json`, and `run_manifest.json`. Th
 
 To replay the main paired F1 comparisons on a CPU, install `requirements.txt` and run `python -m gref_rag statistics --output outputs/main-paired-statistics.csv`. This replay uses the released score ledger and fixed query IDs.
 
+Use `python -m gref_rag matched-budget-statistics --output outputs/matched-budget-summary.csv` to replay the matched-budget table. To run fresh QA at the three budgets, use the GRef-RAG and KG²RAG retrieval exports with the [matched-budget command](docs/evaluation.md#matched-context-budgets).
+
 Use `evaluate` with `--recall-adapter` to score saved baseline predictions, or `generate` with the common configuration to apply the same QA prompt to saved baseline contexts. Align incoming artifacts to the fixed benchmark IDs. See [adapter formats and comparison caveats](docs/evaluation.md) and [official results and parity checks](res/README.md).
 
 | GRef-RAG | Common EM / F1 (%) | Context tokens | Native EM / F1 (%) | Full-input tokens |
@@ -86,7 +88,7 @@ Use `evaluate` with `--recall-adapter` to score saved baseline predictions, or `
 | MuSiQue | 5.8 / 8.3 | 558 | 20.1 / 29.1 | 1015 |
 | PopQA | 40.3 / 50.2 | 522 | 47.7 / 60.6 | 1014 |
 
-The PopQA native row uses the question-only rerun on the same 1,000 queries. The camera-ready archive reports 47.2 EM, 60.54 F1, and 988.006 full-input tokens from the earlier run, which allowed benchmark subject names and Wikipedia titles to seed retrieval. The common-prompt PopQA result already uses question-only retrieval. [PopQA correction and validation](res/README.md#live-validation)
+The PopQA native row uses the question-only rerun on the same 1,000 queries. An earlier manuscript used a run that allowed benchmark subject names and Wikipedia titles to seed retrieval. The common-prompt PopQA result used question-only retrieval throughout. [PopQA correction and validation](res/README.md#live-validation)
 
 ## Code map
 

@@ -12,23 +12,37 @@ The live retrieval timer includes query encoding, both retrieval phases, and ren
 
 GRef-RAG uses a six-bundle rendering budget. HotpotQA and 2Wiki use the chain/paragraph renderer. MuSiQue and PopQA reuse the chain-deduplicated renderer recorded in the original native experiment. The headline LightRAG result uses hybrid retrieval with a short-answer adaptation and a 1,024-token output cap. Dense RAG, HippoRAG2, KG²RAG, and PathRAG retain the native prompt protocols recorded in the camera-ready experiment.
 
-The archived native PopQA cohort used an earlier retrieval path that could add the dataset's subject and Wikipedia title as anchors. Its saved outputs reproduce the camera-ready scores. The release applies the question-only boundary to both prompt settings. Re-rendering the corrected PopQA bundles with the native budget changes 437 of the 1,000 archived native contexts. This historical difference concerns retrieval input provenance. The question-only rerun is recorded separately in the results.
+An earlier native PopQA cohort permitted the dataset's subject and Wikipedia title as anchors. The revised manuscript and release use question-only retrieval. Re-rendering the question-only bundles with the native budget changes 437 of the 1,000 earlier native contexts. The results preserve both ledgers for verification.
 
-GRef-RAG's comparison choice line comes from the question text. The paper-native config preserves the original role string `ACE-RAG` and original route-specific decode seeds. The templates in code use `GRef-RAG` by name, matching the typeset appendix. The native configuration applies the recorded string at prompt construction and reproduces the saved prompt hashes for all four cohorts.
+GRef-RAG's comparison choice line comes from the question text. The paper-native config preserves the original role string `ACE-RAG` and original route-specific decode seeds. The templates in code use `GRef-RAG` by name, matching the typeset appendix. The native configuration applies the recorded string at prompt construction and reproduces the revised four-cohort prompt references.
 
 ## Reproduction scope
 
 | Manuscript result | What this artifact supports |
 | --- | --- |
 | Main common-prompt QA and token efficiency | GRef-RAG indexing and inference on the fixed cohorts. All eight methods' saved query IDs, EM/F1, and context-token counts support aggregate and paired-statistics replay. |
-| Method-native QA | GRef-RAG runtime and the camera-ready aggregate table. The archived metadata-aware PopQA row is superseded for question-only comparisons by the corrected run. |
+| Method-native QA | GRef-RAG runtime and the revised aggregate table, including the corrected PopQA cohort. |
+| Matched context budgets | Both policies and all caps. The 48,000 score records support the paired F1 intervals and the actual token-use table. |
 | Online and offline cost | Reported descriptive measurements and timings from new GRef-RAG runs. Measurement boundaries and hardware allocation differ across baselines. |
 | Baseline provenance and recall | Method-specific adapters for supplied retrieval outputs. Baseline indexing and inference depend on the corresponding external projects and historical run settings. |
-| Supplementary experiments | The paper's ablation and sensitivity suites, alternate generator, matched-budget tests, and MultiHop-RAG news evaluation require their recorded controls and inputs. The default CLI targets the two main four-dataset prompt settings. |
+| Other supplementary experiments | The ablation and sensitivity suites, alternate generator, and MultiHop-RAG news evaluation require their original controls and inputs. |
 
 The stored common-prompt F1 comparisons can be replayed locally with `python -m gref_rag statistics --output outputs/main-paired-statistics.csv`. The confidence intervals describe query-sampling uncertainty. Serving variability is assessed separately in the live validation record. [Results and validation](../res/README.md)
 
-The paper's complete-evidence packing control reused an older GRef-RAG candidate pool for PopQA. The saved candidates came from the metadata-aware retrieval path. The three other archived packing cohorts have a mean GRef-RAG minus KG²RAG F1 difference of 4.38, 3.59, and 4.23 percentage points at the 512, 1,024, and 2,048 token caps respectively. These are descriptive means of saved scores. The four-dataset packing numbers require a new PopQA packing run for a question-only comparison.
+## Matched context budgets
+
+The revised PopQA controls reuse the question-only GRef-RAG evidence bundles and the frozen KG²RAG chunk ranking. Both methods use the same 1,000 query IDs and Qwen checkpoint, common QA prompt, and decoding. The three other cohorts use saved answers from their earlier paired runs. All records use the same release evaluator with official answer references, including the 2Wiki v1.1 aliases. The stratified query bootstrap resamples pairs within each dataset and averages the four dataset means. Its intervals capture question-sampling uncertainty conditional on the recorded outputs. [Matched-budget ledger and validation](../res/README.md#matched-budget-results)
+
+Pass a GRef-RAG JSONL export from `run --retrieval-only --save-evidence --save-context` and a KG²RAG JSONL export with `query_id`, `question`, `rendered_context`, and ranked `final_ordered_chunks`. Each chunk includes `chunk_id`, `text`, and `source_id` or `title`. Both context policies run at 512, 1,024, and 2,048 Qwen tokens. The paired runner shares one generator response for identical prompt hashes.
+
+```bash
+python -m gref_rag matched-budget --dataset popqa \
+  --gref-results outputs/popqa-common/predictions.jsonl \
+  --kg-results local/kg2rag-popqa.jsonl \
+  --output outputs/popqa-budget
+```
+
+Append `--prepare-only` to produce the cap and prompt-hash manifest without a QA server. Run `matched-budget-statistics` on the released score ledger to reproduce the revised table.
 
 ## Recall adapters
 
@@ -45,7 +59,7 @@ The adapter name, retrieval unit, gold unit, numerator, and denominator are emit
 | `pathrag` | Expand guarded paths in selection rank, node provenance before edge provenance, deduplicate exact titles, take five, and normalize | `ranked_source_titles` from the final graph mapping, or `selected_paths` with `node_source_ids` and `chunk_to_title` |
 | `raptor` | Take five native nodes, union their descendant source titles, and compare against supporting titles | `retrieved_nodes` with `descendant_source_titles` per node in native rank order |
 
-For three datasets, `gref-paper` emits its uncapped value as `support_title_coverage`. The historical PopQA branch uses a mapper whose ranking can differ from the rendered evidence. The release's default GRef adapter traces evidence text present in the rendered context. Ambiguous identical evidence without an explicit source title contributes only when it can be attributed unambiguously. RAPTOR's camera-ready full-corpus recall was unmeasured. The historical tree-lineage adapter supports source-title diagnostics when descendant provenance is supplied. The paper's Figure 3 recall panel visualizes method-specific diagnostics. Cross-method comparisons in the main table use the shared QA evaluation.
+For three datasets, `gref-paper` emits its uncapped value as `support_title_coverage`. The historical PopQA branch uses a mapper whose ranking can differ from the rendered evidence. The release's default GRef adapter traces evidence text present in the rendered context. Ambiguous identical evidence without an explicit source title contributes only when it can be attributed unambiguously. RAPTOR's camera-ready full-corpus recall was unmeasured. The historical tree-lineage adapter supports source-title diagnostics when descendant provenance is supplied. The revised Figure 3 uses the shared answer F1 and context-token metrics. [Figure source](../scripts/plot_common_efficiency.py)
 
 ### Score a baseline export
 

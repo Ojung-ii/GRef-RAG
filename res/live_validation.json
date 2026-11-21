@@ -569,6 +569,60 @@
         "bundle_candidate_sha256": 0
       },
       "source_title_differences_from_rescored_archived_evidence": 0
+    },
+    "full_cohort": {
+      "n": 1000,
+      "differences_from_paper_reference": {
+        "context_sha256": 5,
+        "prompt_sha256": 5,
+        "context_tokens": 3
+      },
+      "source_title_differences_from_rescored_archived_evidence": 3,
+      "recall_at_5": 0.9235,
+      "mean_context_tokens": 479.681,
+      "mean_retrieval_seconds": 0.22477730002783938,
+      "isolation": {
+        "method": "Hold the graph, query vector and retrieval configuration fixed, then switch the stored dense passage vectors",
+        "archive_context_hashes_recovered": 5,
+        "rebuilt_context_hashes_repeated": 5,
+        "queries": [
+          {
+            "query_id": "5a829c1d55429966c78a6a67",
+            "rebuilt_output_repeated": true,
+            "archived_output_recovered": true,
+            "seed_ids_differ": false,
+            "bundle_candidates_differ": false
+          },
+          {
+            "query_id": "5a8c7623554299653c1aa07a",
+            "rebuilt_output_repeated": true,
+            "archived_output_recovered": true,
+            "seed_ids_differ": true,
+            "bundle_candidates_differ": true
+          },
+          {
+            "query_id": "5ae3d67f5542992f92d8238f",
+            "rebuilt_output_repeated": true,
+            "archived_output_recovered": true,
+            "seed_ids_differ": false,
+            "bundle_candidates_differ": true
+          },
+          {
+            "query_id": "5a7a3edd5542990783324ed9",
+            "rebuilt_output_repeated": true,
+            "archived_output_recovered": true,
+            "seed_ids_differ": false,
+            "bundle_candidates_differ": true
+          },
+          {
+            "query_id": "5a8dae82554299068b959d99",
+            "rebuilt_output_repeated": true,
+            "archived_output_recovered": true,
+            "seed_ids_differ": true,
+            "bundle_candidates_differ": true
+          }
+        ]
+      }
     }
   }
 }

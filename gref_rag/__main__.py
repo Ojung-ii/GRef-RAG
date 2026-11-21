@@ -105,8 +105,33 @@ def main() -> None:
     statistics.add_argument("--ledger", type=Path, default=Path("res/common_query_scores.csv"))
     statistics.add_argument("--output", type=Path, required=True)
 
+    budgets = commands.add_parser("matched-budget", help="run the matched context budget controls")
+    dataset(budgets)
+    budgets.add_argument("--config", type=Path, default=Path("configs/common.yaml"))
+    budgets.add_argument("--gref-results", type=Path, required=True)
+    budgets.add_argument("--kg-results", type=Path, required=True)
+    budgets.add_argument("--output", type=Path, required=True)
+    budgets.add_argument("--limit", type=int, choices=range(1, 1001), metavar="N")
+    budgets.add_argument("--workers", type=int, choices=range(1, 65), default=32, metavar="N")
+    budgets.add_argument("--prepare-only", action="store_true")
+
+    budget_stats = commands.add_parser(
+        "matched-budget-statistics", help="recompute paired matched-budget F1 intervals"
+    )
+    budget_stats.add_argument("--ledger", type=Path, default=Path("res/matched_budget_scores.csv"))
+    budget_stats.add_argument("--output", type=Path, required=True)
+
     args = parser.parse_args()
-    if args.command == "statistics":
+    if args.command == "matched-budget":
+        from .budget_experiment import run_budget_experiment
+
+        print_summary(run_budget_experiment(args, load_yaml(args.config)))
+    elif args.command == "matched-budget-statistics":
+        from .evaluation.budget_statistics import write_budget_statistics
+
+        rows = write_budget_statistics(args.ledger, args.output)
+        print_summary({"comparisons": len(rows)})
+    elif args.command == "statistics":
         from .evaluation.statistics import write_common_statistics
 
         rows = write_common_statistics(args.ledger, args.output)
