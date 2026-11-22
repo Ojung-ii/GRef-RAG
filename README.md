@@ -1,8 +1,10 @@
 # GRef-RAG
 
-**Is Broader Retrieval Always Better for GraphRAG?**
+**GRef-RAG: Is Broader Retrieval Always Better for GraphRAG?**
 
 Junghyun Oh, Jin-woo Lee, and Sungsu Lim
+
+Findings of EACL 2027
 
 GRef-RAG (Graph Retrieval with Evidence Refinement for RAG) retrieves document anchors, chunks, and sentences in **Global Seed Search**. **Local Refinement** expands mention-linked evidence chains, assembles evidence bundles, and reranks them using semantic coverage before rendering the QA context.
 
@@ -101,4 +103,23 @@ The PopQA native row uses the question-only rerun on the same 1,000 queries. An 
 | `evaluation/metrics.py`, `evaluation/recall.py` | Shared QA/cost metrics and method-specific recall |
 | `pipeline.py`, `__main__.py` | Integration and experiment CLI |
 
-The release is licensed under [MIT](LICENSE). External models and datasets carry their own terms. See [third-party resources](docs/evaluation.md#third-party-resources).
+## Reproducibility
+
+Use the saved score ledgers to verify the camera-ready results on a CPU. The command needs the client dependencies. It can run without PyTorch, benchmark downloads, model weights, or an inference server.
+
+```bash
+pip install -r requirements.txt
+python -m gref_rag verify-release --output outputs/camera-ready-verification.json
+```
+
+- [Run manifest guide](reproducibility/RUN_MANIFEST.md) and [machine-readable run manifest](reproducibility/run_manifest.csv)
+- [Dataset provenance and download commands](reproducibility/DATASET_PROVENANCE.md)
+- [Result provenance and verification scope](reproducibility/RESULT_PROVENANCE.md)
+
+## Citation
+
+Junghyun Oh, Jin-woo Lee, and Sungsu Lim. 2027. *GRef-RAG: Is Broader Retrieval Always Better for GraphRAG?* Findings of EACL 2027.
+
+## License
+
+The GRef-RAG implementation is licensed under [MIT](LICENSE). Obtain third-party models and datasets under their publishers' terms. [Dataset licenses](reproducibility/DATASET_PROVENANCE.md#source-terms-and-distribution) · [Third-party resources](docs/evaluation.md#third-party-resources)

@@ -1,0 +1,9 @@
+{
+  "news": {
+    "seed": 20260803,
+    "resamples": 10000,
+    "scope": "four comparisons against the same semantic News V2 run"
+  },
+  "interval": "Individual percentile paired-bootstrap intervals",
+  "correction": "Holm is applied separately to the archived test families"
+}

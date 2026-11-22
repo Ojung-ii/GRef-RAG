@@ -1,0 +1,65 @@
+{
+  "paper_snapshot": "paper_snapshot.json",
+  "paper_values": "paper_values.csv",
+  "cpu_replay": {
+    "command": "python -m gref_rag verify-release --output outputs/camera-ready-verification.json",
+    "manuscript_checksum_option": "--paper-tex /path/to/main.tex",
+    "manuscript_sha256_checked": true,
+    "numeric_cells": 459,
+    "pass": 459,
+    "mismatch": 0,
+    "checks_by_reference": {
+      "Table 1": 96,
+      "Table 8": 72,
+      "Table 2": 32,
+      "Table 3": 24,
+      "Table 4(a)": 18,
+      "Table 4(b)": 24,
+      "Table 4(c)": 15,
+      "Table 4(d)": 5,
+      "Table 6": 12,
+      "Table 7": 6,
+      "Table 9": 12,
+      "Table 10": 18,
+      "Table 11": 18,
+      "Table 12": 12,
+      "Main Result": 6,
+      "Paired-Bootstrap Uncertainty": 2,
+      "Second generator": 3,
+      "News-domain evaluation": 8,
+      "Seed and Fusion Sensitivity": 7,
+      "Figure 3": 64,
+      "Table 5": 5
+    }
+  },
+  "manifest_coverage": {
+    "artifacts": 291,
+    "rows_with_original_run_id": 51,
+    "original_run_id_not_retained": 220,
+    "original_run_id_not_applicable": 20,
+    "archived_directory_label_not_retained": 22,
+    "code_revision_not_retained": 268,
+    "config_path_not_retained": 124,
+    "source_sha256_not_retained": 22
+  },
+  "figure_checks": {
+    "Figure 1": {
+      "status": "Partial qualitative verification",
+      "evidence": "../res/supplementary/qualitative_case_evidence.csv",
+      "unverified": [
+        "Original source for the larger-context panel",
+        "Depicted QA protocol"
+      ]
+    },
+    "Figure 2": {
+      "status": "Pixel-identical to the paper figure",
+      "checked_dpi": 155,
+      "release_image": "../docs/framework.png"
+    },
+    "Figure 3": {
+      "status": "Regenerated plot pixel-identical to the paper figure",
+      "checked_dpi": 135,
+      "script": "../scripts/plot_common_efficiency.py"
+    }
+  }
+}

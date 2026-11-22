@@ -51,6 +51,10 @@ def main() -> None:
     data.add_argument("--verify-only", action="store_true")
     data_root(data)
 
+    news = commands.add_parser("news-data", help="download or verify the pinned MultiHop-RAG files")
+    news.add_argument("--verify-only", action="store_true")
+    data_root(news)
+
     index = commands.add_parser("index", help="build the evidence graph and dense indices")
     dataset(index)
     index.add_argument("--config", type=Path, default=Path("configs/common.yaml"))
@@ -121,8 +125,23 @@ def main() -> None:
     budget_stats.add_argument("--ledger", type=Path, default=Path("res/matched_budget_scores.csv"))
     budget_stats.add_argument("--output", type=Path, required=True)
 
+    verify = commands.add_parser("verify-release", help="check the camera-ready numbers on a CPU")
+    verify.add_argument("--output", type=Path, required=True)
+    verify.add_argument("--paper-tex", type=Path)
+
     args = parser.parse_args()
-    if args.command == "matched-budget":
+    if args.command == "verify-release":
+        from .evaluation.release_verification import verify_release
+
+        counts = verify_release(args.output, args.paper_tex)
+        print_summary(counts)
+        if counts.get("Mismatch"):
+            raise SystemExit(1)
+    elif args.command == "news-data":
+        from .data import prepare_news_inputs
+
+        print_summary(prepare_news_inputs(args.data_root, args.verify_only))
+    elif args.command == "matched-budget":
         from .budget_experiment import run_budget_experiment
 
         print_summary(run_budget_experiment(args, load_yaml(args.config)))

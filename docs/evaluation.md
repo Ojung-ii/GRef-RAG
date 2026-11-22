@@ -25,7 +25,7 @@ GRef-RAG's comparison choice line comes from the question text. The paper-native
 | Matched context budgets | Both policies and all caps. The 48,000 score records support the paired F1 intervals and the actual token-use table. |
 | Online and offline cost | Reported descriptive measurements and timings from new GRef-RAG runs. Measurement boundaries and hardware allocation differ across baselines. |
 | Baseline provenance and recall | Method-specific adapters for supplied retrieval outputs. Baseline indexing and inference depend on the corresponding external projects and historical run settings. |
-| Other supplementary experiments | The ablation and sensitivity suites, alternate generator, and MultiHop-RAG news evaluation require their original controls and inputs. |
+| Other supplementary experiments | Archived per-query score ledgers support CPU verification of the ablations, Llama, news, robustness, rendering, and sensitivity results. Full reruns use their historical controls and inputs. [Run manifest](../reproducibility/RUN_MANIFEST.md) |
 
 The stored common-prompt F1 comparisons can be replayed locally with `python -m gref_rag statistics --output outputs/main-paired-statistics.csv`. The confidence intervals describe query-sampling uncertainty. Serving variability is assessed separately in the live validation record. [Results and validation](../res/README.md)
 

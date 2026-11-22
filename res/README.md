@@ -2,6 +2,8 @@
 
 The tables contain frozen experiment outputs and paper values. EM, F1, and recall are fractions. The ledgers contain IDs, scores, counts, and hashes. Benchmark text and model predictions are obtained or generated separately.
 
+The supplementary ledgers cover the ablations, alternate generator, news, mention-link robustness, native QA, and sensitivity studies. Use the [table and figure map](../reproducibility/RUN_MANIFEST.md#manuscript-map) to locate each result and its run record.
+
 | File | Contents |
 | --- | --- |
 | `common_prompt.csv` | Common-prompt QA and token table |
@@ -53,7 +55,7 @@ The release rebuilt the HotpotQA graph from the pinned corpus and matched all se
 
 An additional HotpotQA check rebuilt the graph and both dense indexes with `NVEMBED_BATCH_SIZE=8`. All sentence and chunk IDs matched the archive. The newly computed vectors differ numerically. Across 1,000 queries, 995 context and prompt hashes matched and mean rendered-source recall was 0.9235, compared with 0.924 on the archive. With the query vectors and graph held fixed, switching to the archived passage vectors recovered all five changed contexts. This isolates the drift to the dense passage vectors for those queries. [Dense index rebuild and comparison](live_validation.json)
 
-| Run | Paper EM / F1 (%) | Live EM / F1 (%) | Paper / live token mean | Changed predictions |
+| Run | Archived reference EM / F1 (%) | Live EM / F1 (%) | Archived / live token mean | Changed predictions |
 | --- | ---: | ---: | ---: | ---: |
 | HotpotQA common | 32.4 / 39.29 | 32.2 / 38.99 | 479.686 / 479.686 | 18 |
 | HotpotQA native | 50.7 / 62.90 | 50.8 / 63.12 | 734.315 / 734.315 | 14 |

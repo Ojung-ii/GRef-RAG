@@ -1,0 +1,7 @@
+dataset,Nc,reference,delta_F1_pp,CI95_low_pp,CI95_high_pp,p_raw,resamples,seed,CI,p_holm,holm_reject_05,family_size
+hotpotqa,40,same_protocol_Nc80,-0.922512389571213,-1.7925319974143503,-0.1044572829131656,0.0282971702829717,10000,20261106,"individual paired percentile, not multiplicity-adjusted",0.16978302169783022,False,6
+hotpotqa,120,same_protocol_Nc80,-0.43291855203619906,-1.0503180618401209,0.17837254901960725,0.18468153184681532,10000,20261106,"individual paired percentile, not multiplicity-adjusted",0.9234076592340766,False,6
+hotpotqa,160,same_protocol_Nc80,-0.162354642261763,-0.8869734318828746,0.5521285822021109,0.6739326067393261,10000,20261106,"individual paired percentile, not multiplicity-adjusted",1.0,False,6
+2wiki,40,same_protocol_Nc80,0.14761904761904768,-0.5952380952380953,0.9095238095238095,0.7053294670532947,10000,20261106,"individual paired percentile, not multiplicity-adjusted",1.0,False,6
+2wiki,120,same_protocol_Nc80,0.16666666666666666,-0.2666666666666667,0.6,0.5905409459054095,10000,20261106,"individual paired percentile, not multiplicity-adjusted",1.0,False,6
+2wiki,160,same_protocol_Nc80,0.26666666666666666,-0.3,0.8333333333333331,0.4403559644035596,10000,20261106,"individual paired percentile, not multiplicity-adjusted",1.0,False,6

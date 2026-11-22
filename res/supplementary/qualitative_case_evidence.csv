@@ -1,0 +1,3 @@
+dataset,query_id,protocol,method,em,f1,source
+2wiki,e7e76caa085611ebbd59ac1f6bf848b6,common,gref-rag,0.0,0.0,res/2wiki-common-reference.jsonl
+2wiki,e7e76caa085611ebbd59ac1f6bf848b6,native,gref-rag,1.0,1.0,res/2wiki-native-reference.jsonl

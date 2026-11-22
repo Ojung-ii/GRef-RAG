@@ -386,3 +386,24 @@ def download_inputs(root: Path, datasets: list[str], with_aliases: bool = False)
         with ZipFile(archive) as source, source.open("id_aliases.json") as stream:
             with atomic_output(alias_file, "wb", expected_hash=TWOWIKI_ALIASES_SHA256) as target:
                 shutil.copyfileobj(stream, target)
+
+
+def prepare_news_inputs(root: Path, verify_only: bool = False) -> dict[str, int]:
+    """Download or verify the original files for the separate news evaluation."""
+    spec = _read(MANIFESTS / "news_data_manifest.json")
+    counts = {}
+    for name, info in spec["files"].items():
+        path = root / "news" / name
+        if not verify_only:
+            url = (
+                f"https://huggingface.co/datasets/{spec['release']}/resolve/"
+                f"{spec['revision']}/{name}"
+            )
+            _download(url, path, info["sha256"])
+        if file_sha256(path) != info["sha256"]:
+            raise ValueError(f"Input checksum mismatch for {path}")
+        count = len(_read(path))
+        if count != info["record_count"]:
+            raise ValueError(f"Unexpected record count for {path}")
+        counts[info["role"]] = count
+    return counts
