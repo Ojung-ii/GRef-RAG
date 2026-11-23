@@ -12,24 +12,41 @@ GRef-RAG (Graph Retrieval with Evidence Refinement for RAG) retrieves document a
 
 This release runs GRef-RAG in the common-prompt and method-native settings on the four Wikipedia-based cohorts. It includes baseline scoring adapters, matched-budget controls, and saved scores for replaying the main comparisons. [Reproduction scope](docs/evaluation.md#reproduction-scope)
 
-## Installation
+## Verify the published results on a CPU
+
+Clone the repository and use Python 3.11. This workflow needs no benchmark downloads, model weights, or inference server.
+
+```bash
+git clone https://github.com/Ojung-ii/GRef-RAG.git
+cd GRef-RAG
+python3.11 -m venv .venv-replay
+source .venv-replay/bin/activate
+python -m pip install -r requirements-replay.txt
+python -m gref_rag verify-release --output outputs/camera-ready-verification.json
+```
+
+The verifier recomputes 459 reported values from the released evidence, including paired statistics, and exits with status 1 on a mismatch. To exercise the indexing, saved-context generation, scoring, and comparison entry points with a synthetic fixture, install `pytest==9.0.3` and run `python -m pytest -q` in the same environment.
+
+## Set up fresh model runs
 
 Use Python 3.11. The reference client environment used PyTorch 2.6.0 with CUDA 12.4 and Transformers 4.57.6.
 
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
-pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cu124
-pip install -r requirements.txt
+python -m pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+python -m pip install -r requirements.txt
 
 export NVEMBED_MODEL_PATH="$(hf download nvidia/NV-Embed-v2 \
   --revision 3fa59658547db50a1e8e3346cf057fd0c77ed6ef)"
 ```
 
-Run Qwen2.5-7B-Instruct with an OpenAI-compatible chat-completions endpoint. For the paper configuration, install the serving requirements in a separate environment and start vLLM.
+Run Qwen2.5-7B-Instruct with an OpenAI-compatible chat-completions endpoint. Open a second terminal at the repository root and start vLLM in its own environment. The server and retrieval client pin different PyTorch versions.
 
 ```bash
-pip install -r requirements-vllm.txt
+python3.11 -m venv .venv-vllm
+source .venv-vllm/bin/activate
+python -m pip install -r requirements-vllm.txt
 vllm serve Qwen/Qwen2.5-7B-Instruct \
   --revision a09a35458c702b33eeacc393d103063234e8bc28 \
   --host 127.0.0.1 --port 8011 --max-model-len 16500 \
@@ -46,6 +63,7 @@ Download the same four benchmark files and corpora from the [HippoRAG 2 dataset 
 
 ```bash
 python -m gref_rag data --with-2wiki-aliases
+python -m gref_rag data --verify-only --with-2wiki-aliases
 ```
 
 Use `--dataset hotpotqa` to download a single cohort. The paper evaluator uses 2Wiki's official answer-ID aliases and demonyms in addition to the answer field. The `--with-2wiki-aliases` option downloads the [official 2Wiki v1.1 data archive](https://github.com/Alab-NII/2wikimultihop) and extracts the verified alias file. Dataset contents, indexes, and model weights stay in local storage. Use `--data-root` or `GREF_RAG_DATA_DIR` to point to a different directory.
@@ -66,6 +84,16 @@ python -m gref_rag run --dataset hotpotqa --index-dir indexes/hotpotqa \
 
 Add `--limit 10` to run the first ten manifest questions. Pass `--retrieval-only --save-context` to run the search stage without a generation server. Pass the resulting `predictions.jsonl` as `--contexts` to the `generate` command with the same dataset, config, and limit. Use `--save-evidence` to export the ranked evidence bundles for provenance analysis.
 
+Compare a full HotpotQA common-prompt run with the historical reference to locate the first differing stage. The `compare` command reports per-stage mismatch counts and returns status 1 when any stage differs. New dense indexes and generation servers can change results even with the pinned settings. [Recorded full-cohort comparisons](res/README.md#live-validation)
+
+```bash
+python -m gref_rag compare \
+  --predictions outputs/hotpotqa-common/predictions.jsonl \
+  --metrics outputs/hotpotqa-common/metrics.json \
+  --reference res/hotpotqa-common-reference.jsonl \
+  --output outputs/hotpotqa-common/parity.json
+```
+
 | Setting | QA prompt | Paper token count |
 | --- | --- | --- |
 | Common | Shared short-answer prompt with Qwen, temperature 0, top-p 1, and a 64-token output cap | Rendered context including evidence headers and references |
@@ -77,7 +105,7 @@ Native reproduction uses the exact historical role string and per-dataset render
 
 Each run writes `predictions.jsonl`, `metrics.json`, and `run_manifest.json`. The evaluator reports EM, token-level F1, source recall, context and full-input tokens, F1 per 1,000 context tokens, online latency, and index-build time where measured. JSON EM/F1 are fractions. Index-build timing is measured by `index` and reused with the same index.
 
-To replay the main paired F1 comparisons on a CPU, install `requirements.txt` and run `python -m gref_rag statistics --output outputs/main-paired-statistics.csv`. This replay uses the released score ledger and fixed query IDs.
+To replay the main paired F1 comparisons on a CPU, install `requirements-replay.txt` and run `python -m gref_rag statistics --output outputs/main-paired-statistics.csv`. This replay uses the released score ledger and fixed query IDs.
 
 Use `python -m gref_rag matched-budget-statistics --output outputs/matched-budget-summary.csv` to replay the matched-budget table. To run fresh QA at the three budgets, use the GRef-RAG and KG²RAG retrieval exports with the [matched-budget command](docs/evaluation.md#matched-context-budgets).
 
@@ -104,13 +132,6 @@ The PopQA native row uses the question-only rerun on the same 1,000 queries. An 
 | `pipeline.py`, `__main__.py` | Integration and experiment CLI |
 
 ## Reproducibility
-
-Use the saved score ledgers to verify the camera-ready results on a CPU. The command needs the client dependencies. It can run without PyTorch, benchmark downloads, model weights, or an inference server.
-
-```bash
-pip install -r requirements.txt
-python -m gref_rag verify-release --output outputs/camera-ready-verification.json
-```
 
 - [Run manifest guide](reproducibility/RUN_MANIFEST.md) and [machine-readable run manifest](reproducibility/run_manifest.csv)
 - [Dataset provenance and download commands](reproducibility/DATASET_PROVENANCE.md)

@@ -3,6 +3,8 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .venv/
+.venv-replay/
+.venv-vllm/
 .env
 outputs/
 indexes/

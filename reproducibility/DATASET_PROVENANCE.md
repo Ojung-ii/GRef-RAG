@@ -37,7 +37,7 @@ The Wikipedia cohorts use maximum EM and token F1 over the accepted references, 
 
 ```bash
 python -m gref_rag data --with-2wiki-aliases
-python -m gref_rag data --verify-only
+python -m gref_rag data --verify-only --with-2wiki-aliases
 ```
 
 ## MultiHop-RAG news

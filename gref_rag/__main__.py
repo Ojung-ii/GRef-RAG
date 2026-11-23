@@ -7,7 +7,14 @@ import json
 import os
 from pathlib import Path
 
-from .data import DATASETS, data_paths, download_inputs, file_sha256, read_benchmark
+from .data import (
+    DATASETS,
+    data_paths,
+    download_inputs,
+    file_sha256,
+    read_benchmark,
+    verify_2wiki_aliases,
+)
 from .evaluation.metrics import evaluate_file
 from .evaluation.recall import ADAPTERS
 from .index import build_index
@@ -171,6 +178,8 @@ def main() -> None:
         datasets = args.datasets or list(DATASETS)
         if not args.verify_only:
             download_inputs(args.data_root, datasets, args.with_2wiki_aliases)
+        if args.with_2wiki_aliases and "2wiki" in datasets:
+            verify_2wiki_aliases(args.data_root)
         for name in datasets:
             examples, documents = read_benchmark(args.data_root, name)
             print(f"{name}: {len(examples)} queries, {len(documents)} corpus units")

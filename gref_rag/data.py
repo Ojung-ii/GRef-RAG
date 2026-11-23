@@ -303,6 +303,17 @@ def read_benchmark(root: Path, dataset: str, *, verify: bool = True):
     return examples, corpus
 
 
+def verify_2wiki_aliases(root: Path) -> Path:
+    path = root / "2wiki" / "id_aliases.json"
+    if not path.is_file():
+        raise FileNotFoundError(
+            f"{path} is required for paper gold. Run 'python -m gref_rag data --dataset 2wiki --with-2wiki-aliases'."
+        )
+    if file_sha256(path) != TWOWIKI_ALIASES_SHA256:
+        raise ValueError(f"2Wiki official aliases checksum mismatch: {path}")
+    return path
+
+
 def apply_official_aliases(
     examples: list[QAExample], dataset: str, policy: str, data_root: Path
 ) -> None:
@@ -323,13 +334,7 @@ def apply_official_aliases(
             value = example.metadata.get("possible_answers")
             example.answers = json.loads(value) if isinstance(value, str) else value
     elif dataset == "2wiki":
-        aliases = data_root / "2wiki" / "id_aliases.json"
-        if not aliases.is_file():
-            raise FileNotFoundError(
-                f"{aliases} is required for paper gold. Run 'python -m gref_rag data --dataset 2wiki --with-2wiki-aliases'."
-            )
-        if file_sha256(aliases) != TWOWIKI_ALIASES_SHA256:
-            raise ValueError(f"2Wiki official aliases checksum mismatch: {aliases}")
+        aliases = verify_2wiki_aliases(data_root)
         with aliases.open(encoding="utf-8") as stream:
             by_answer_id = {row["Q_id"]: row for row in map(json.loads, filter(str.strip, stream))}
         for example in examples:

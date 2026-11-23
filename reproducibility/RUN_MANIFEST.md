@@ -35,7 +35,7 @@ The [machine-readable manifest](run_manifest.csv) connects tables, figures, and 
 
 ## CPU verification
 
-Run the following from the repository root after installing [the client dependencies](../requirements.txt).
+Run the following from the repository root after installing [the CPU replay dependencies](../requirements-replay.txt).
 
 ```bash
 python -m gref_rag verify-release --output outputs/camera-ready-verification.json
