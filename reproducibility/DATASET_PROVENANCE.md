@@ -1,6 +1,6 @@
 # Dataset provenance
 
-The main evaluation uses all 1,000 questions in each of four QA files in the pinned HippoRAG 2 release. The files are subsets or benchmark-specific releases relative to the upstream benchmarks. The paper runs apply no further question subsampling or filtering. The separate corpus file is the retrieval collection for a cohort. [Pinned HippoRAG 2 release](https://huggingface.co/datasets/osunlp/HippoRAG_2/tree/488c53fb27dd28f70412e18004bd49f791600574)
+The main evaluation uses all 1,000 questions in each of four QA files in the pinned HippoRAG 2 release. The files are subsets or benchmark-specific releases relative to the upstream benchmarks. The paper runs apply no further question subsampling or filtering. The separate corpus file is the retrieval collection for a cohort. [Direct downloads by dataset](../README.md#data) · [Pinned HippoRAG 2 release](https://huggingface.co/datasets/osunlp/HippoRAG_2/tree/488c53fb27dd28f70412e18004bd49f791600574)
 
 The released query manifests preserve the experiment order and canonical IDs. The loader checks the byte checksums, unique ID set, and canonical sequence before indexing or evaluation. [Machine-readable input manifest](../manifests/data_manifest.json) · [Query ID manifests](../manifests/query_ids)
 

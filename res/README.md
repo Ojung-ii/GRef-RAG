@@ -61,6 +61,6 @@ An additional HotpotQA check rebuilt the graph and both dense indexes with `NVEM
 | HotpotQA native | 50.7 / 62.90 | 50.8 / 63.12 | 734.315 / 734.315 | 14 |
 | PopQA native with question-only retrieval | 47.2 / 60.54 | 47.7 / 60.57 | 988.006 / 1013.928 | 63 |
 
-HotpotQA figures above use the historical server arguments shown in the README. A second launch configuration produced more answer differences with identical prompts. Holding the server and prompts fixed, varying prefix-cache reuse changed 3 of 24 outputs tested. The probes establish that these serving choices can change outputs. The full original request and serving state are unavailable, so the probes do not identify a cause for every historical difference.
+The HotpotQA rows above come from the archived alternate-server replay. The eager YaRN replay produced more answer differences with identical prompts. Holding the server and prompts fixed, varying prefix-cache reuse changed 3 of 24 outputs tested. The archive retains partial original request and serving state, so some answer differences remain unexplained. [Serving profiles](../docs/evaluation.md#processes-and-serving-profiles)
 
 For PopQA, 437 native contexts changed when the older metadata-aware retrieval was replaced with the archived question-only retrieval. The revised table uses `popqa-native-reference.jsonl`. The earlier values are traceable to `popqa-native-historical-reference.jsonl`. All 32,000 stored common-prompt QA scores and 32,000 historical adapter diagnostics were recalculated and matched.

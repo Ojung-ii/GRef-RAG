@@ -8,6 +8,19 @@ Common context tokens come from the pinned Qwen tokenizer on actual rendered tex
 
 The live retrieval timer includes query encoding, both retrieval phases, and rendering. The generation timer includes the chat-completions round-trip. The index-build timer starts after loading the corpus and includes graph, mention edges, dense vectors, and file writes. The evaluation records how many rows have each metric. The paper timings used method-specific environments and measurement boundaries. See `res/online_efficiency.csv` and `res/offline_cost.csv` for reported descriptive comparisons.
 
+## Processes and serving profiles
+
+In a two-GPU run, vLLM serves Qwen in one process while the GRef-RAG CLI runs on the other GPU. `index` encodes the corpus with NV-Embed-v2 inside the CLI process. `run` loads NV-Embed-v2 on its first dense query and reuses the local model for later queries. The network endpoint serves generation only. The single-GPU workflow saves contexts before generation so the two GPU workloads run in sequence. [Startup commands](../README.md#set-up-fresh-model-runs)
+
+The HotpotQA validation records distinguish two vLLM launch profiles. Both used a maximum model length of 16,500. The README shows a launch with the documented core settings of the second profile. [Live validation records](../res/live_validation.json)
+
+| Recorded profile | GPU memory utilization | RoPE | Execution and batching | Prefix cache |
+| --- | ---: | --- | --- | --- |
+| Eager YaRN replay | 0.26 | YaRN factor 2 | Eager, up to 16 sequences and 8,192 batched tokens | Unverified for the full replay |
+| Alternate server replay | 0.35 | Model default | Eager mode disabled | Enabled |
+
+For a fresh comparison, record the vLLM version, generator and embedding revisions, GPU placement, embedding batch size, and serving flags. The archive preserves these settings where verifiable. [Run manifest](../reproducibility/RUN_MANIFEST.md) · [vLLM reproducibility guidance](https://docs.vllm.ai/en/v0.19.0/usage/reproducibility/)
+
 ## Method-native setting
 
 GRef-RAG uses a six-bundle rendering budget. HotpotQA and 2Wiki use the chain/paragraph renderer. MuSiQue and PopQA reuse the chain-deduplicated renderer recorded in the original native experiment. The headline LightRAG result uses hybrid retrieval with a short-answer adaptation and a 1,024-token output cap. Dense RAG, HippoRAG2, KG²RAG, and PathRAG retain the native prompt protocols recorded in the camera-ready experiment.

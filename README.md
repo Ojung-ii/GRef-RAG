@@ -25,11 +25,29 @@ python -m pip install -r requirements-replay.txt
 python -m gref_rag verify-release --output outputs/camera-ready-verification.json
 ```
 
-The verifier recomputes 459 reported values from the released evidence, including paired statistics, and exits with status 1 on a mismatch. To exercise the indexing, saved-context generation, scoring, and comparison entry points with a synthetic fixture, install `pytest==9.0.3` and run `python -m pytest -q` in the same environment.
+The verifier checks 459 reported values at their displayed precision, using saved per-question scores, token counts, and archived measurements. It reruns the paired statistics and exits with status 1 on a mismatch. Fresh model outputs and latency measurements come from the GPU workflow below. To exercise the indexing, saved-context generation, scoring, and comparison entry points with a synthetic fixture, install `pytest==9.0.3` and run `python -m pytest -q` in the same environment. [Verification scope](reproducibility/RESULT_PROVENANCE.md#cpu-verification-scope)
 
 ## Set up fresh model runs
 
-Use Python 3.11. The reference client environment used PyTorch 2.6.0 with CUDA 12.4 and Transformers 4.57.6.
+Use Python 3.11 and two terminals at the repository root. In this example, physical GPU 0 serves Qwen2.5-7B-Instruct through vLLM, and physical GPU 1 runs the GRef-RAG client. The client loads NV-Embed-v2 locally during indexing and query retrieval and sends QA requests to vLLM. The two processes use separate Python environments and PyTorch versions.
+
+### Terminal 1 — Qwen generation on GPU 0
+
+```bash
+python3.11 -m venv .venv-vllm
+source .venv-vllm/bin/activate
+python -m pip install -r requirements-vllm.txt
+CUDA_VISIBLE_DEVICES=0 vllm serve Qwen/Qwen2.5-7B-Instruct \
+  --revision a09a35458c702b33eeacc393d103063234e8bc28 \
+  --host 127.0.0.1 --port 8011 --max-model-len 16500 \
+  --gpu-memory-utilization 0.35 --enable-prefix-caching
+```
+
+This example uses the default model RoPE configuration. Serving parameters from the archived HotpotQA replays are listed in the evaluation guide. [Serving profiles](docs/evaluation.md#processes-and-serving-profiles)
+
+### Terminal 2 — NV-Embed-v2 and retrieval on GPU 1
+
+The reference client used PyTorch 2.6.0 with CUDA 12.4 and Transformers 4.57.6.
 
 ```bash
 python3.11 -m venv .venv
@@ -37,40 +55,41 @@ source .venv/bin/activate
 python -m pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cu124
 python -m pip install -r requirements.txt
 
+export CUDA_VISIBLE_DEVICES=1
+export EMBED_DEVICE=cuda:0
+export GREF_RAG_LLM_BASE_URL=http://127.0.0.1:8011/v1
 export NVEMBED_MODEL_PATH="$(hf download nvidia/NV-Embed-v2 \
   --revision 3fa59658547db50a1e8e3346cf057fd0c77ed6ef)"
 ```
 
-Run Qwen2.5-7B-Instruct with an OpenAI-compatible chat-completions endpoint. Open a second terminal at the repository root and start vLLM in its own environment. The server and retrieval client pin different PyTorch versions.
-
-```bash
-python3.11 -m venv .venv-vllm
-source .venv-vllm/bin/activate
-python -m pip install -r requirements-vllm.txt
-vllm serve Qwen/Qwen2.5-7B-Instruct \
-  --revision a09a35458c702b33eeacc393d103063234e8bc28 \
-  --host 127.0.0.1 --port 8011 --max-model-len 16500 \
-  --gpu-memory-utilization 0.35
-```
-
-In the client environment, set `GREF_RAG_LLM_BASE_URL` if the endpoint differs from `http://127.0.0.1:8011/v1`. Use `VLLM_API_KEY` if the endpoint requires authentication. Set `CUDA_VISIBLE_DEVICES` separately for the two processes, or run retrieval and generation in separate phases on one GPU.
+`cuda:0` is the first CUDA device visible inside the masked client process. Use `VLLM_API_KEY` if your generation endpoint requires authentication. On one GPU, use `CUDA_VISIBLE_DEVICES=0` in both terminals. Run retrieval with `--retrieval-only --save-context` first, let it exit, and then start vLLM and run `generate` on the saved contexts.
 
 Pass `NVEMBED_BATCH_SIZE=8` to the `index` command if the default batch of 32 exceeds available GPU memory. Keep the embedding model, precision, and batch size in your run record when comparing newly built indexes.
 
 ## Data
 
-Download the same four benchmark files and corpora from the [HippoRAG 2 dataset on Hugging Face](https://huggingface.co/datasets/osunlp/HippoRAG_2/tree/488c53fb27dd28f70412e18004bd49f791600574). The command below populates `data/{hotpotqa,2wiki,musique,popqa}/` and verifies the input checksums and each ordered 1,000-query cohort.
+The four main cohorts use the questions and separate retrieval corpus from a pinned HippoRAG 2 release. Each QA file contains 1,000 questions. MultiHop-RAG news is a separate evaluation with 2,556 questions.
+
+| Dataset | Questions | Retrieval corpus | Additional input |
+| --- | --- | --- | --- |
+| HotpotQA | [QA JSON](https://huggingface.co/datasets/osunlp/HippoRAG_2/resolve/488c53fb27dd28f70412e18004bd49f791600574/hotpotqa.json) | [Corpus JSON](https://huggingface.co/datasets/osunlp/HippoRAG_2/resolve/488c53fb27dd28f70412e18004bd49f791600574/hotpotqa_corpus.json) | |
+| 2WikiMultiHopQA | [QA JSON](https://huggingface.co/datasets/osunlp/HippoRAG_2/resolve/488c53fb27dd28f70412e18004bd49f791600574/2wikimultihopqa.json) | [Corpus JSON](https://huggingface.co/datasets/osunlp/HippoRAG_2/resolve/488c53fb27dd28f70412e18004bd49f791600574/2wikimultihopqa_corpus.json) | [Official archive with answer aliases](https://www.dropbox.com/s/ms2m13252h6xubs/data_ids_april7.zip?dl=1) |
+| MuSiQue | [QA JSON](https://huggingface.co/datasets/osunlp/HippoRAG_2/resolve/488c53fb27dd28f70412e18004bd49f791600574/musique.json) | [Corpus JSON](https://huggingface.co/datasets/osunlp/HippoRAG_2/resolve/488c53fb27dd28f70412e18004bd49f791600574/musique_corpus.json) | |
+| PopQA | [QA JSON](https://huggingface.co/datasets/osunlp/HippoRAG_2/resolve/488c53fb27dd28f70412e18004bd49f791600574/popqa.json) | [Corpus JSON](https://huggingface.co/datasets/osunlp/HippoRAG_2/resolve/488c53fb27dd28f70412e18004bd49f791600574/popqa_corpus.json) | |
+| MultiHop-RAG news | [QA JSON](https://huggingface.co/datasets/yixuantt/MultiHopRAG/resolve/71ac0d0bd1f951d2d6b70311f7d2ae404e1ffa82/MultiHopRAG.json) | [Corpus JSON](https://huggingface.co/datasets/yixuantt/MultiHopRAG/resolve/71ac0d0bd1f951d2d6b70311f7d2ae404e1ffa82/corpus.json) | |
+
+The following commands populate `data/{hotpotqa,2wiki,musique,popqa}/` and verify checksums, aliases, and ordered question IDs.
 
 ```bash
 python -m gref_rag data --with-2wiki-aliases
 python -m gref_rag data --verify-only --with-2wiki-aliases
 ```
 
-Use `--dataset hotpotqa` to download a single cohort. The paper evaluator uses 2Wiki's official answer-ID aliases and demonyms in addition to the answer field. The `--with-2wiki-aliases` option downloads the [official 2Wiki v1.1 data archive](https://github.com/Alab-NII/2wikimultihop) and extracts the verified alias file. Dataset contents, indexes, and model weights stay in local storage. Use `--data-root` or `GREF_RAG_DATA_DIR` to point to a different directory.
+Use `--dataset hotpotqa` to download a single main cohort. The `--with-2wiki-aliases` option extracts the paper evaluator's answer-ID aliases and demonyms from the official archive. Use `python -m gref_rag news-data` for the separate news input files. Set `--data-root` or `GREF_RAG_DATA_DIR` to choose a different local directory. [Versions, hashes, and source terms](reproducibility/DATASET_PROVENANCE.md)
 
 ## Run the experiments
 
-Build one index per dataset, then reuse it for both prompt settings.
+In terminal 2, build one index per dataset and reuse it for both prompt settings.
 
 ```bash
 python -m gref_rag index --dataset hotpotqa --index-dir indexes/hotpotqa
