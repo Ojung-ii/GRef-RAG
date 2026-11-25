@@ -1,0 +1,597 @@
+{
+  "scope": "Archived Main, News, and Table 10 retrieval diagnostics",
+  "candidate_pool_budget_definition": "The optional global cap when enabled. Otherwise, the larger of candidate_top_k and min_candidate_pool.",
+  "main_and_news": [
+    {
+      "artifact_id": "common.hotpotqa.gref-rag",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "13dafc6618fcbe45049f829e3b2449abb26c5f9a6d095e4756d07575c72b5737",
+      "source_config_file_sha256": "23e3314cdee0229f83d28b3731937cb4dd23f17fbb06467e27d02e22f909cf33",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 143,
+      "pre_limit_unique_candidates_max": 236
+    },
+    {
+      "artifact_id": "common.2wiki.gref-rag",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "7e6911b358ed17727f3be2e15afe0250bf02ab404a746cdd5c2e73057e87e330",
+      "source_config_file_sha256": "23e3314cdee0229f83d28b3731937cb4dd23f17fbb06467e27d02e22f909cf33",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 155,
+      "pre_limit_unique_candidates_max": 239
+    },
+    {
+      "artifact_id": "common.musique.gref-rag",
+      "dataset": "musique",
+      "source_predictions_sha256": "49c92cd1eee2017672ae024fbbdedb2e26f79219648d7a69c75cc7cc003d1e48",
+      "source_config_file_sha256": "267fc5b2e378e251d6e412f000922d05c7aaeddbf9078170b4db0b08ac711ca6",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 146,
+      "pre_limit_unique_candidates_max": 251
+    },
+    {
+      "artifact_id": "common.popqa.gref-rag",
+      "dataset": "popqa",
+      "source_predictions_sha256": "e8d790d16b9594e7fe07a312280234b055ff42beb7acf619a3982e588798e2ca",
+      "source_config_file_sha256": "e8ae442fc9e866d9b874800a4029bbfe96970b028c0af7a2a6ca085bfb5e122b",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": true,
+      "optional_global_cap": 80,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 165,
+      "pre_limit_unique_candidates_max": 241
+    },
+    {
+      "artifact_id": "news.gref-rag",
+      "dataset": "news",
+      "source_predictions_sha256": "9e45acb4ae3b6a04cc95be93ea34f44cc78d44af08359599e942e83a4b1c61ad",
+      "source_config_file_sha256": "0b8e9e52e4728c4bab4dc5a9c53dfdb8950dfa477b4168999f89a77272219b3d",
+      "queries_checked": 2556,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 2556
+      },
+      "pre_limit_unique_candidates_min": 136,
+      "pre_limit_unique_candidates_max": 240
+    }
+  ],
+  "table_10_sensitivity": [
+    {
+      "artifact_id": "sensitivity.hotpotqa.SeedFusion.base",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "6874433eed7fd9f5107bb147f03117bd373b952e5ed1deff7d09ec9d6e184fb5",
+      "source_config_file_sha256": "7229b1e7e5ef2ab25229b4e2c56cfcaddf0728017ebc4c95e97f46ceef18eb84",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 143,
+      "pre_limit_unique_candidates_max": 236
+    },
+    {
+      "artifact_id": "sensitivity.hotpotqa.SeedFusion.ks2",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "bcd33237575ea7359c41400e7236afa03a602e61484ef2304084424241f628b4",
+      "source_config_file_sha256": "c6a0ea17797fb1c324cf11dd01e376a9ee20fd6a9ebc66349d35ddf896196d63",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 143,
+      "pre_limit_unique_candidates_max": 236
+    },
+    {
+      "artifact_id": "sensitivity.hotpotqa.SeedFusion.ks6",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "41655f1abc411b155283541b1ff5d8987f919e64e957b189477a1ed1e70d9389",
+      "source_config_file_sha256": "c5a04d2f82f9d0fad96b4a7fb498719f12497744c5c0fed2f74e3416096fbcf9",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 143,
+      "pre_limit_unique_candidates_max": 236
+    },
+    {
+      "artifact_id": "sensitivity.hotpotqa.SeedFusion.bm25_low",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "a0afeac7d42195c1b15bdfbadba7ba697adcf9b56af8816d1240e14c61289e80",
+      "source_config_file_sha256": "3da4047cadae9bff9a4aefbbbeee3b1452ef4942d8354e3190d6adc8961f631e",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 143,
+      "pre_limit_unique_candidates_max": 236
+    },
+    {
+      "artifact_id": "sensitivity.hotpotqa.SeedFusion.bm25_high",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "70b5a5ab0e4e02649813e2227ae37fd2f97c221f0b9dfbd0f2198f730b4fb9d5",
+      "source_config_file_sha256": "2a854f34c377b12e92069477926cdcc38ab7550c95f32858973905d8a2c2ba39",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 143,
+      "pre_limit_unique_candidates_max": 236
+    },
+    {
+      "artifact_id": "sensitivity.hotpotqa.SeedFusion.dense_low",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "864e259e143da78c39bdd2498ddd1dbab04fd0f32c9f61ecb497d5c1ef58ec68",
+      "source_config_file_sha256": "b74e32cd6a4534551ea4bae947ee5e4b0aa0463f6acee8b083d1ca2050917d6a",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 143,
+      "pre_limit_unique_candidates_max": 236
+    },
+    {
+      "artifact_id": "sensitivity.hotpotqa.SeedFusion.dense_high",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "bea4d745a4a5bde46f1a33687441242ea6fc50bb320c5843d49654d2c8dcce93",
+      "source_config_file_sha256": "3da850274b4ea3007a67c94a1d7ed738163f9955ff0ca3428a57a176ce98a762",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 143,
+      "pre_limit_unique_candidates_max": 236
+    },
+    {
+      "artifact_id": "sensitivity.hotpotqa.SeedFusion.entity_low",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "f812053be81ac002096cd4557329ed5448d8b67200fece9c6bf67720f6af12d2",
+      "source_config_file_sha256": "02ed9db78b3548a87afed22e9c58e5e6923e9a61c94a643b96aec044ee2c927b",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 143,
+      "pre_limit_unique_candidates_max": 236
+    },
+    {
+      "artifact_id": "sensitivity.hotpotqa.SeedFusion.entity_high",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "f52d48795342cc4e2624f57d8a0c86a41fdd449af1d67adf6894be445a0f2a7b",
+      "source_config_file_sha256": "5a85cce7eabe47c67d5525e157080f08392443af93d58fe3f4b263bec1ec3adb",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 143,
+      "pre_limit_unique_candidates_max": 236
+    },
+    {
+      "artifact_id": "sensitivity.2wiki.SeedFusion.base",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "b916710ab4844ff8b668643620254c4f77398b5a3e5c1c7bc84c220e263131cd",
+      "source_config_file_sha256": "7229b1e7e5ef2ab25229b4e2c56cfcaddf0728017ebc4c95e97f46ceef18eb84",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 155,
+      "pre_limit_unique_candidates_max": 239
+    },
+    {
+      "artifact_id": "sensitivity.2wiki.SeedFusion.ks2",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "bffc605a5d064db952dd05645efbe550404216ef6c40e9ca4f4fbc72d27d29d6",
+      "source_config_file_sha256": "c6a0ea17797fb1c324cf11dd01e376a9ee20fd6a9ebc66349d35ddf896196d63",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 155,
+      "pre_limit_unique_candidates_max": 239
+    },
+    {
+      "artifact_id": "sensitivity.2wiki.SeedFusion.ks6",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "a8fbe43f842c870bc1572e94545c98b6875f05a9dcd94b089e8e0cb68cee8fb6",
+      "source_config_file_sha256": "c5a04d2f82f9d0fad96b4a7fb498719f12497744c5c0fed2f74e3416096fbcf9",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 155,
+      "pre_limit_unique_candidates_max": 239
+    },
+    {
+      "artifact_id": "sensitivity.2wiki.SeedFusion.bm25_low",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "d9b6c9df8798fa18aa8ef5d81643783bea80111505137c7d1910f92742899c00",
+      "source_config_file_sha256": "3da4047cadae9bff9a4aefbbbeee3b1452ef4942d8354e3190d6adc8961f631e",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 155,
+      "pre_limit_unique_candidates_max": 239
+    },
+    {
+      "artifact_id": "sensitivity.2wiki.SeedFusion.bm25_high",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "214c1b1b0800258586776d15d9c6b68973e3ea2f3cf082f22e72f163b6138b21",
+      "source_config_file_sha256": "2a854f34c377b12e92069477926cdcc38ab7550c95f32858973905d8a2c2ba39",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 155,
+      "pre_limit_unique_candidates_max": 239
+    },
+    {
+      "artifact_id": "sensitivity.2wiki.SeedFusion.dense_low",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "bf47bf9a6701f1ad8d5ef2c0d35ba620abbcee0fb0a728f3521ff6f3642aaa23",
+      "source_config_file_sha256": "b74e32cd6a4534551ea4bae947ee5e4b0aa0463f6acee8b083d1ca2050917d6a",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 155,
+      "pre_limit_unique_candidates_max": 239
+    },
+    {
+      "artifact_id": "sensitivity.2wiki.SeedFusion.dense_high",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "e851c8bc69ff188bd86f965fa1ec7bbc24182651685d18ad21d1156ea06e8151",
+      "source_config_file_sha256": "3da850274b4ea3007a67c94a1d7ed738163f9955ff0ca3428a57a176ce98a762",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 155,
+      "pre_limit_unique_candidates_max": 239
+    },
+    {
+      "artifact_id": "sensitivity.2wiki.SeedFusion.entity_low",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "39762f5839f641655246ee3730ac16313a32712603bab5c48722ec471d06a10c",
+      "source_config_file_sha256": "02ed9db78b3548a87afed22e9c58e5e6923e9a61c94a643b96aec044ee2c927b",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 155,
+      "pre_limit_unique_candidates_max": 239
+    },
+    {
+      "artifact_id": "sensitivity.2wiki.SeedFusion.entity_high",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "b6f8391186afd1955b7f556a88f6c106d86c9eae32b83b85bb7aa2193698180b",
+      "source_config_file_sha256": "5a85cce7eabe47c67d5525e157080f08392443af93d58fe3f4b263bec1ec3adb",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 155,
+      "pre_limit_unique_candidates_max": 239
+    },
+    {
+      "artifact_id": "sensitivity.hotpotqa.Nc.Nc80",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "14cf6feb89bd2e606549755e68845143393bd2eb69e484df3d3e1c32d10f9b56",
+      "source_config_file_sha256": "b4776f4d0ecd8b685afd9c3a145748e51f8c8e009ac3f9dda604e5eec23dd73a",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 143,
+      "pre_limit_unique_candidates_max": 236
+    },
+    {
+      "artifact_id": "sensitivity.hotpotqa.Nc.Nc40",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "cd406ab3d71c180e860d8f5d08abd3ec42c0836b7187a4c66a643fdea8779863",
+      "source_config_file_sha256": "3357fc1086b41a8002d540e2a3d78ec6dd05dc1d09ff76761fd00ae60c68e9d5",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 40,
+      "min_candidate_pool": 40,
+      "bm25_top_k": 40,
+      "dense_top_k": 40,
+      "seed_candidate_pool_budget": 40,
+      "observed_seed_candidate_pool_size_counts": {
+        "40": 1000
+      },
+      "pre_limit_unique_candidates_min": 71,
+      "pre_limit_unique_candidates_max": 119
+    },
+    {
+      "artifact_id": "sensitivity.hotpotqa.Nc.Nc120",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "1e7a14b174047ff3d16a1cac84b55c0da7f5bb0ea5c28679d51c23f3a20908e4",
+      "source_config_file_sha256": "d1bad2c7accb2ac980a0b5d27a83e330c26dbe2771c9f087783cd2969a0824d6",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 120,
+      "min_candidate_pool": 120,
+      "bm25_top_k": 120,
+      "dense_top_k": 120,
+      "seed_candidate_pool_budget": 120,
+      "observed_seed_candidate_pool_size_counts": {
+        "120": 1000
+      },
+      "pre_limit_unique_candidates_min": 215,
+      "pre_limit_unique_candidates_max": 354
+    },
+    {
+      "artifact_id": "sensitivity.hotpotqa.Nc.Nc160",
+      "dataset": "hotpotqa",
+      "source_predictions_sha256": "1c2733ff274ac10f2373c0bb8cffa706480ad2102627210eb24fd9f5e2b34b00",
+      "source_config_file_sha256": "f05dfea3ca27679b3726ddb35d7ad86c7a633a72d8720b45b03227e286c965cf",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 160,
+      "min_candidate_pool": 160,
+      "bm25_top_k": 160,
+      "dense_top_k": 160,
+      "seed_candidate_pool_budget": 160,
+      "observed_seed_candidate_pool_size_counts": {
+        "160": 1000
+      },
+      "pre_limit_unique_candidates_min": 293,
+      "pre_limit_unique_candidates_max": 474
+    },
+    {
+      "artifact_id": "sensitivity.2wiki.Nc.Nc80",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "3b164a0ad6f792cc0082dc33a3bfbeca2c693f424a5989b41419feda4cffeb9e",
+      "source_config_file_sha256": "b4776f4d0ecd8b685afd9c3a145748e51f8c8e009ac3f9dda604e5eec23dd73a",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 80,
+      "min_candidate_pool": 80,
+      "bm25_top_k": 80,
+      "dense_top_k": 80,
+      "seed_candidate_pool_budget": 80,
+      "observed_seed_candidate_pool_size_counts": {
+        "80": 1000
+      },
+      "pre_limit_unique_candidates_min": 155,
+      "pre_limit_unique_candidates_max": 239
+    },
+    {
+      "artifact_id": "sensitivity.2wiki.Nc.Nc40",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "75582b207d49b80de034124d8d9988ed598048917cea555d77c5710d098354a4",
+      "source_config_file_sha256": "3357fc1086b41a8002d540e2a3d78ec6dd05dc1d09ff76761fd00ae60c68e9d5",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 40,
+      "min_candidate_pool": 40,
+      "bm25_top_k": 40,
+      "dense_top_k": 40,
+      "seed_candidate_pool_budget": 40,
+      "observed_seed_candidate_pool_size_counts": {
+        "40": 1000
+      },
+      "pre_limit_unique_candidates_min": 69,
+      "pre_limit_unique_candidates_max": 120
+    },
+    {
+      "artifact_id": "sensitivity.2wiki.Nc.Nc120",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "2870431aebca0b580187def5a44586eb03df3d9d54c4edc81eec711547821885",
+      "source_config_file_sha256": "d1bad2c7accb2ac980a0b5d27a83e330c26dbe2771c9f087783cd2969a0824d6",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 120,
+      "min_candidate_pool": 120,
+      "bm25_top_k": 120,
+      "dense_top_k": 120,
+      "seed_candidate_pool_budget": 120,
+      "observed_seed_candidate_pool_size_counts": {
+        "120": 1000
+      },
+      "pre_limit_unique_candidates_min": 235,
+      "pre_limit_unique_candidates_max": 358
+    },
+    {
+      "artifact_id": "sensitivity.2wiki.Nc.Nc160",
+      "dataset": "2wiki",
+      "source_predictions_sha256": "400f265d34ced5952bc628dcce78f7a62c236a42b991530298bd69e07b0568ca",
+      "source_config_file_sha256": "f05dfea3ca27679b3726ddb35d7ad86c7a633a72d8720b45b03227e286c965cf",
+      "queries_checked": 1000,
+      "optional_global_cap_enabled": false,
+      "optional_global_cap": null,
+      "candidate_top_k": 160,
+      "min_candidate_pool": 160,
+      "bm25_top_k": 160,
+      "dense_top_k": 160,
+      "seed_candidate_pool_budget": 160,
+      "observed_seed_candidate_pool_size_counts": {
+        "160": 1000
+      },
+      "pre_limit_unique_candidates_min": 325,
+      "pre_limit_unique_candidates_max": 476
+    }
+  ]
+}

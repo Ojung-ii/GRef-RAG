@@ -19,7 +19,7 @@ indexing:
 retrieval:
   # The legacy index keys proposition and entity store sentences and document anchors.
   search_units: [proposition, chunk, entity]
-  # Candidate cap N_c and seed budget K_s.
+  # Candidate-pool settings and the optional global cap.
   candidate_top_k: 80
   min_candidate_pool: 80
   candidate_cap:

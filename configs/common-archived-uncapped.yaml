@@ -1,4 +1,5 @@
 extends: common.yaml
 retrieval:
+  # The default seed candidate-pool budget still applies.
   candidate_cap:
     enabled: false

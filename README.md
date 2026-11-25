@@ -91,7 +91,7 @@ Use `--dataset hotpotqa` to download a single main cohort. The `--with-2wiki-ali
 
 In terminal 2, build one index per dataset and reuse it for both prompt settings.
 
-The commands below use the public configuration tested in the HotpotQA GPU reproduction. For the historical common-prompt candidate-pool setting, pass `--config configs/common-archived-uncapped.yaml` for HotpotQA, 2Wiki, and MuSiQue. The original PopQA common-prompt run enabled the global cap at 80. The archived settings and the tested GPU rerun are documented in the evaluation guide and reproduction artifacts. [Archived retrieval settings](docs/evaluation.md#archived-retrieval-settings) · [HotpotQA GPU reproduction](res/hotpotqa-gpu-reproduction.json)
+The commands below use the public configuration with the optional global cap enabled at 80, as in the HotpotQA GPU reproduction and the historical PopQA common-prompt run. For the historical HotpotQA, 2Wiki, and MuSiQue common-prompt cap setting, pass `--config configs/common-archived-uncapped.yaml`. This overlay disables the optional cap and retains the default seed candidate-pool budget of 80. [Archived retrieval settings](docs/evaluation.md#archived-retrieval-settings) · [HotpotQA GPU reproduction](res/hotpotqa-gpu-reproduction.json)
 
 ```bash
 python -m gref_rag index --dataset hotpotqa --index-dir indexes/hotpotqa

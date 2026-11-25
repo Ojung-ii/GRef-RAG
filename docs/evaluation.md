@@ -10,9 +10,11 @@ The live retrieval timer includes query encoding, both retrieval phases, and ren
 
 ## Archived retrieval settings
 
-The resolved configs and all recorded retrieval diagnostics agree on the global candidate cap. The three Wikipedia multi-hop cohorts and the News V2 run disabled it. PopQA common-prompt used the global cap of 80. All five cohorts used the same lexical/dense/anchor fusion weights, four seeds, and a rendering budget of four bundles. Disabling the global cap leaves the per-channel retrieval limits in place. [Recorded configuration fields](../reproducibility/config_records.csv)
+The three Wikipedia multi-hop cohorts and News V2 disabled the optional global candidate cap. PopQA common-prompt enabled it at 80. All five cohorts passed 80 candidates to seed selection and shared the lexical/dense/anchor fusion weights, four seeds, and four-bundle rendering budget. With the optional cap disabled, the seed candidate-pool limit is the larger of `candidate_top_k` and `min_candidate_pool`. Per-channel retrieval limits still apply. [Recorded configuration fields](../reproducibility/config_records.csv) · [Archived pool and cap audit](../reproducibility/candidate_pool_audit.json)
 
-For the archived common-prompt cap setting of HotpotQA, 2Wiki, and MuSiQue, use [the uncapped configuration](../configs/common-archived-uncapped.yaml). The HotpotQA GPU reproduction used the public common and native configs at the recorded release commit, with the global cap enabled at 80. Its dense-vector isolation held that setting, the graph, and the query vectors fixed. [GPU reproduction](../res/hotpotqa-gpu-reproduction.json)
+Use the archived setting for the optional cap in HotpotQA, 2Wiki, and MuSiQue with `--config configs/common-archived-uncapped.yaml`. The HotpotQA GPU reproduction used the public common and native configs at the recorded release commit, with the global cap enabled at 80. Its dense-vector isolation held that setting, the graph, and the query vectors fixed. [Archived configuration](../configs/common-archived-uncapped.yaml) · [GPU reproduction](../res/hotpotqa-gpu-reproduction.json)
+
+Table 10's candidate-pool sweep varies the pool budget and the BM25 and dense retrieval depths together at 40, 80, 120, and 160. Both Table 10 sweeps leave the optional global cap disabled. [Sensitivity run manifest](../reproducibility/RUN_MANIFEST.md#manuscript-map)
 
 ## Processes and serving profiles
 

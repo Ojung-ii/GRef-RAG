@@ -25,7 +25,7 @@ The [machine-readable manifest](run_manifest.csv) connects tables, figures, and 
 | Table 5 | `protocol`. [Common config](../configs/common.yaml) · [Native config](../configs/native.yaml) · [Evaluation protocol](../docs/evaluation.md) |
 | Table 8 | `native.*`. [Native query scores and retained token counts](../res/supplementary/native_query_scores.csv) · [Native aggregates](../res/native_prompt.csv) · [Corrected GRef-RAG PopQA records](../res/popqa-native-reference.jsonl) |
 | Table 9 | `render.*`. [Fixed-bundle rendering-budget scores](../res/supplementary/rendering_query_scores.csv) |
-| Table 10 | `sensitivity.*` and `paired.sensitivity`. [Seed, fusion, and candidate-cap scores](../res/supplementary/sensitivity_query_scores.csv) |
+| Table 10 | `sensitivity.*` and `paired.sensitivity`. [Seed, fusion, and candidate-pool scores](../res/supplementary/sensitivity_query_scores.csv) · [Archived pool and cap audit](candidate_pool_audit.json) |
 | Table 11 | `offline.*`. [Archived offline summaries](../res/offline_cost.csv) |
 | Table 12 | `ablation.*` for `*_view` variants and the corresponding Main Full controls. [Ablation scores](../res/supplementary/ablation_query_scores.csv) |
 | Figure 1 | `figure1`. [Observed common and native QA scores for the illustrated question](../res/supplementary/qualitative_case_evidence.csv). The original run for the larger panel is unverified. |

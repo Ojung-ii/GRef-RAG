@@ -1,8 +1,8 @@
 {
-  "authority": "Camera-ready submission candidate, 2026-11-25",
+  "authority": "Camera-ready final release candidate, 2026-11-25",
   "publication": "Findings of EACL 2027",
-  "tex_sha256": "6892535471704d68cb5129ccbc6f7a0a333f33e2042c0c4933e21fb150e40f47",
-  "pdf_sha256": "b536e9704bad863e11267fc5aaa5a7ec1b535e8b013caf960a105a07bbdb02fd",
+  "tex_sha256": "a2769a3a7bfdec61238c39bf7cebfb1b594761e3b63856c26f37e82613a4377d",
+  "pdf_sha256": "648a1665b3f1e2586cb8ee82df0f7ba6ab712212ed4f9704dd41cc571080f2dd",
   "labels": {
     "fig:motivation": "Figure 1",
     "fig:method": "Figure 2",
@@ -32,11 +32,11 @@
     "figures/common_prompt_context_f1.pdf": "93390011b06008453ef66112bab4178f5c5b81795369a5f0911b1ee25f0aff9c",
     "figures/gref_rag_figure1_simple_v4.pdf": "5c799486677b81d42bb41908d700d2b870842d51ad9d3d56bb3ed5b270d2c813",
     "figures/gref_rag_main_framework_simple_sero_v4.pdf": "2c7f904d078b7ec8d08d111ebed20993e5cf84d1b4019910e5ca5fbcf549a7d0",
-    "main.tex": "6892535471704d68cb5129ccbc6f7a0a333f33e2042c0c4933e21fb150e40f47",
+    "main.tex": "a2769a3a7bfdec61238c39bf7cebfb1b594761e3b63856c26f37e82613a4377d",
     "references.bib": "fb577406a84d1501bc1713d26a3229c6fc6b37943c9a57ff9c5727238b147d8a",
     "release-url.tex": "bcd55cf631337f242e04090fe701d690cbd989134a96c25e7671180b473e6429"
   },
   "public_artifact_url": "https://github.com/Ojung-ii/GRef-RAG",
   "original_public_commit": "b5bdd6e3ecd6d0676df22c08d74749b4c579ed92",
-  "source_archive_sha256": "d27ce5bc7243a530335ac29ada8130d17e0bab1401b3f26f69b4af7e082cb103"
+  "source_archive_sha256": "e136504409289ab5bdde5b58bfa74e44e6f8c48f36722b1c9a3915c2f6e53d85"
 }
