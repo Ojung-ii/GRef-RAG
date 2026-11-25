@@ -1,0 +1,247 @@
+{
+  "release_commit": "b5bdd6e3ecd6d0676df22c08d74749b4c579ed92",
+  "data": {
+    "dataset": "hotpotqa",
+    "query_count": 1000
+  },
+  "timing_note": "Other workloads were present on both GPUs. These are descriptive timings for this run.",
+  "frozen_context_replay_vs_previous_public_server": {
+    "common": {
+      "n": 1000,
+      "differences_vs_prior_release_profile": {
+        "context_sha256": 0,
+        "prompt_sha256": 0,
+        "prediction": 0,
+        "context_tokens": 0,
+        "full_input_tokens": 0
+      }
+    },
+    "native": {
+      "n": 1000,
+      "differences_vs_prior_release_profile": {
+        "context_sha256": 0,
+        "prompt_sha256": 0,
+        "prediction": 0,
+        "context_tokens": 0,
+        "full_input_tokens": 0
+      }
+    }
+  },
+  "server": {
+    "gpu": "NVIDIA H100 PCIe",
+    "physical_gpu_index": 0,
+    "vllm": "0.19.0",
+    "model_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+    "dtype": "bfloat16",
+    "gpu_memory_utilization": 0.35,
+    "max_model_len": 16500,
+    "prefix_caching": true,
+    "enforce_eager": false,
+    "rope": "model default",
+    "run_order": [
+      "frozen-common",
+      "frozen-native",
+      "fresh-common",
+      "fresh-native"
+    ]
+  },
+  "index": {
+    "gpu": "NVIDIA H100 PCIe",
+    "physical_gpu_index": 1,
+    "embedding_revision": "3fa59658547db50a1e8e3346cf057fd0c77ed6ef",
+    "embedding_dtype": "float16",
+    "client_torch": "2.6.0+cu124",
+    "client_transformers": "4.57.6",
+    "batch_size": 8,
+    "initial_batch32_out_of_memory": true,
+    "metrics": {
+      "corpus_sha256": "9333647b922382776cd2cb02893b390d77984df85a91bfa8be411284978aca7d",
+      "indexing_seconds": 840.4900362950284,
+      "graph_seconds": 8.820438225986436,
+      "mention_edge_seconds": 3.489221,
+      "dense_seconds": 831.669598069042,
+      "storage_bytes": 888646675,
+      "timing_boundary": "graph and dense construction including writes; corpus loading excluded"
+    },
+    "graph_component_sha256_matches": {
+      "chunks.jsonl": true,
+      "entities.json": true,
+      "prop_to_mentioned_titles.json": true,
+      "propositions.jsonl": true,
+      "title_aliases.json": true,
+      "title_mentions.jsonl": true,
+      "title_to_mentioning_props.json": true
+    },
+    "dense": {
+      "proposition": {
+        "shape": [
+          42537,
+          4096
+        ],
+        "rows_identical": 0,
+        "max_abs_difference": 0.0021367622539401054,
+        "minimum_cosine": 0.9999842047691345,
+        "ids_match": true,
+        "matrix_digest_matches_previous_batch8_rebuild": true
+      },
+      "chunk": {
+        "shape": [
+          9985,
+          4096
+        ],
+        "rows_identical": 0,
+        "max_abs_difference": 0.0011383071541786194,
+        "minimum_cosine": 0.9999940395355225,
+        "ids_match": true,
+        "matrix_digest_matches_previous_batch8_rebuild": true
+      }
+    }
+  },
+  "protocols": {
+    "common": {
+      "paper_reference": {
+        "em": 0.324,
+        "f1": 0.39294406212982064,
+        "context_tokens": 479.686
+      },
+      "frozen": {
+        "metrics": {
+          "em": 0.322,
+          "f1": 0.38985651634227486,
+          "context_tokens": 479.686,
+          "full_input_tokens": 614.929,
+          "output_tokens": 4.502,
+          "recall_at_5": 0.924,
+          "retrieval_seconds": 0.24518779291841203,
+          "generation_seconds": 0.09903974571393337,
+          "indexing_seconds": null
+        },
+        "first_differing_stage": "prediction_sha256",
+        "difference_counts": {
+          "context_sha256": 0,
+          "prompt_sha256": 0,
+          "context_tokens": 0,
+          "full_input_tokens": 0,
+          "prediction_sha256": 18,
+          "em": 6,
+          "f1": 9
+        },
+        "f1_change_vs_reference_ci95_points": [
+          -0.8300210622710623,
+          0.18333333333333332
+        ]
+      },
+      "fresh": {
+        "metrics": {
+          "em": 0.322,
+          "f1": 0.38985651634227486,
+          "context_tokens": 479.681,
+          "full_input_tokens": 614.924,
+          "output_tokens": 4.502,
+          "recall_at_5": 0.9235,
+          "retrieval_seconds": 0.3582045145521406,
+          "generation_seconds": 0.09244020783132874,
+          "indexing_seconds": 840.4900362950284
+        },
+        "first_differing_stage": "context_sha256",
+        "difference_counts": {
+          "context_sha256": 5,
+          "prompt_sha256": 5,
+          "context_tokens": 3,
+          "full_input_tokens": 0,
+          "prediction_sha256": 18,
+          "em": 6,
+          "f1": 9
+        },
+        "f1_change_vs_reference_ci95_points": [
+          -0.8300210622710623,
+          0.18333333333333332
+        ]
+      },
+      "fresh_vs_frozen_same_server": {
+        "identical_prompt_count": 995,
+        "different_answers_total": 0,
+        "different_answers_with_identical_prompts": 0
+      }
+    },
+    "native": {
+      "paper_reference": {
+        "em": 0.507,
+        "f1": 0.6290381747423544,
+        "full_input_tokens": 734.315
+      },
+      "frozen": {
+        "metrics": {
+          "em": 0.508,
+          "f1": 0.6312227218945485,
+          "context_tokens": 434.695,
+          "full_input_tokens": 734.315,
+          "output_tokens": 4.973,
+          "recall_at_5": 0.9425,
+          "retrieval_seconds": null,
+          "generation_seconds": 0.10218811594229192,
+          "indexing_seconds": null
+        },
+        "first_differing_stage": "prediction_sha256",
+        "difference_counts": {
+          "context_sha256": 0,
+          "prompt_sha256": 0,
+          "context_tokens": 0,
+          "full_input_tokens": 0,
+          "prediction_sha256": 14,
+          "em": 7,
+          "f1": 13
+        },
+        "f1_change_vs_reference_ci95_points": [
+          -0.16174439775910363,
+          0.6245748132586367
+        ]
+      },
+      "fresh": {
+        "metrics": {
+          "em": 0.508,
+          "f1": 0.6308893885612152,
+          "context_tokens": 434.68,
+          "full_input_tokens": 734.3,
+          "output_tokens": 4.971,
+          "recall_at_5": 0.9425,
+          "retrieval_seconds": 0.3609480762374587,
+          "generation_seconds": 0.09867787079355912,
+          "indexing_seconds": 840.4900362950284
+        },
+        "first_differing_stage": "context_sha256",
+        "difference_counts": {
+          "context_sha256": 9,
+          "prompt_sha256": 9,
+          "context_tokens": 0,
+          "full_input_tokens": 6,
+          "prediction_sha256": 14,
+          "em": 7,
+          "f1": 13
+        },
+        "f1_change_vs_reference_ci95_points": [
+          -0.20111706349206349,
+          0.5960413165266105
+        ]
+      },
+      "fresh_vs_frozen_same_server": {
+        "identical_prompt_count": 991,
+        "different_answers_total": 1,
+        "different_answers_with_identical_prompts": 0
+      }
+    }
+  },
+  "historical_kg2rag_hotpotqa_common_f1": 0.39068847944281376,
+  "dense_isolation": {
+    "common": {
+      "changed_contexts_tested": 5,
+      "fresh_variation_repeated": 5,
+      "historical_context_recovered": 5
+    },
+    "native": {
+      "changed_contexts_tested": 9,
+      "fresh_variation_repeated": 9,
+      "historical_context_recovered": 9
+    }
+  }
+}

@@ -8,6 +8,12 @@ Common context tokens come from the pinned Qwen tokenizer on actual rendered tex
 
 The live retrieval timer includes query encoding, both retrieval phases, and rendering. The generation timer includes the chat-completions round-trip. The index-build timer starts after loading the corpus and includes graph, mention edges, dense vectors, and file writes. The evaluation records how many rows have each metric. The paper timings used method-specific environments and measurement boundaries. See `res/online_efficiency.csv` and `res/offline_cost.csv` for reported descriptive comparisons.
 
+## Archived retrieval settings
+
+The resolved configs and all recorded retrieval diagnostics agree on the global candidate cap. The three Wikipedia multi-hop cohorts and the News V2 run disabled it. PopQA common-prompt used the global cap of 80. All five cohorts used the same lexical/dense/anchor fusion weights, four seeds, and a rendering budget of four bundles. Disabling the global cap leaves the per-channel retrieval limits in place. [Recorded configuration fields](../reproducibility/config_records.csv)
+
+For the archived common-prompt cap setting of HotpotQA, 2Wiki, and MuSiQue, use [the uncapped configuration](../configs/common-archived-uncapped.yaml). The HotpotQA GPU reproduction used the public common and native configs at the recorded release commit, with the global cap enabled at 80. Its dense-vector isolation held that setting, the graph, and the query vectors fixed. [GPU reproduction](../res/hotpotqa-gpu-reproduction.json)
+
 ## Processes and serving profiles
 
 In a two-GPU run, vLLM serves Qwen in one process while the GRef-RAG CLI runs on the other GPU. `index` encodes the corpus with NV-Embed-v2 inside the CLI process. `run` loads NV-Embed-v2 on its first dense query and reuses the local model for later queries. The network endpoint serves generation only. The single-GPU workflow saves contexts before generation so the two GPU workloads run in sequence. [Startup commands](../README.md#set-up-fresh-model-runs)

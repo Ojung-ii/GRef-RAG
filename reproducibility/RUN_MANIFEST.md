@@ -32,6 +32,7 @@ The [machine-readable manifest](run_manifest.csv) connects tables, figures, and 
 | Figure 2 | `figure2`. [Method diagram](../docs/framework.png) |
 | Figure 3 | `figure3` and the same 32 method–dataset inputs as Table 1. [Plot data](../res/common_prompt.csv) · [Plotting script](../scripts/plot_common_efficiency.py) |
 | Historical recall | `recall.archive` and `recall.rendered.gref`. [Adapter-specific diagnostics](../res/recall_diagnostics.csv) · [GRef-RAG rendered recall](../res/gref_rendered_recall.csv) |
+| HotpotQA reproduction | `gpu.hotpotqa.*` identifies a separate, completed GPU validation of the published code. The frozen-context and fresh-built runs use historical GRef-RAG references for comparison. [Validation summary](../res/hotpotqa-gpu-reproduction.json) |
 
 ## CPU verification
 

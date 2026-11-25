@@ -1,0 +1,4 @@
+extends: common.yaml
+retrieval:
+  candidate_cap:
+    enabled: false

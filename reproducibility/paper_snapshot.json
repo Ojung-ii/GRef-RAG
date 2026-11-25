@@ -1,8 +1,8 @@
 {
-  "authority": "Revised camera-ready, 2026-11-21",
+  "authority": "Camera-ready submission candidate, 2026-11-25",
   "publication": "Findings of EACL 2027",
-  "tex_sha256": "a5a8a8efc4ff97e7ec3d7368936b0d385475cbcaafe9e11cd0b53ceb983517db",
-  "pdf_sha256": "ae7080ea7d1f3dd8dbe39129068b8ee1975ff41b12c4b52297670cbd4c00ae58",
+  "tex_sha256": "1d69c6d80f2d37d9569f9e3265519b8cb45098f0b0a719b5ab29277f39b514d7",
+  "pdf_sha256": "bce4debe5db47221ec62ad082dbdac21e5732ed97f9ef97d277edd7a2ca7db04",
   "labels": {
     "fig:motivation": "Figure 1",
     "fig:method": "Figure 2",
@@ -14,15 +14,29 @@
     "tab:generator_detail": "Table 6",
     "tab:packing_actual_tokens": "Table 7",
     "tab:native_results": "Table 8",
-    "fig:common_prompt_coverage_quality": "Figure 3",
     "tab:operating_point_sensitivity": "Table 9",
     "tab:seed_weight_sensitivity": "Table 10",
     "tab:offline_cost": "Table 11",
+    "fig:common_prompt_coverage_quality": "Figure 3",
     "tab:hetero_view_ablation": "Table 12"
   },
   "figures": {
     "common_prompt_context_f1.pdf": "93390011b06008453ef66112bab4178f5c5b81795369a5f0911b1ee25f0aff9c",
     "gref_rag_figure1_simple_v4.pdf": "5c799486677b81d42bb41908d700d2b870842d51ad9d3d56bb3ed5b270d2c813",
     "gref_rag_main_framework_simple_sero_v4.pdf": "2c7f904d078b7ec8d08d111ebed20993e5cf84d1b4019910e5ca5fbcf549a7d0"
-  }
+  },
+  "source_files_sha256": {
+    "README.md": "b4826244d31272687bd5f8b0571a6dc43e37f540ce3e4eb835dad3e0e8fa1704",
+    "acl.sty": "19dfeddc2c0e448f3926a0bef048a9db3f3611b46265b760caabd7ada4f361de",
+    "acl_natbib.bst": "e332fd51dcea48e2a8a89754892c3cb99674a1cd70b527b661e9aaffc235e83c",
+    "figures/common_prompt_context_f1.pdf": "93390011b06008453ef66112bab4178f5c5b81795369a5f0911b1ee25f0aff9c",
+    "figures/gref_rag_figure1_simple_v4.pdf": "5c799486677b81d42bb41908d700d2b870842d51ad9d3d56bb3ed5b270d2c813",
+    "figures/gref_rag_main_framework_simple_sero_v4.pdf": "2c7f904d078b7ec8d08d111ebed20993e5cf84d1b4019910e5ca5fbcf549a7d0",
+    "main.tex": "1d69c6d80f2d37d9569f9e3265519b8cb45098f0b0a719b5ab29277f39b514d7",
+    "references.bib": "fb577406a84d1501bc1713d26a3229c6fc6b37943c9a57ff9c5727238b147d8a",
+    "release-url.tex": "bcd55cf631337f242e04090fe701d690cbd989134a96c25e7671180b473e6429"
+  },
+  "public_artifact_url": "https://github.com/Ojung-ii/GRef-RAG",
+  "original_public_commit": "b5bdd6e3ecd6d0676df22c08d74749b4c579ed92",
+  "source_archive_sha256": "d5975eb8c525b4b920432232d4a6d70f41070494254f725d431151f286778ca6"
 }

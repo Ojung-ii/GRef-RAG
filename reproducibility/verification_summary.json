@@ -33,9 +33,9 @@
     }
   },
   "manifest_coverage": {
-    "artifacts": 291,
+    "artifacts": 295,
     "rows_with_original_run_id": 51,
-    "original_run_id_not_retained": 220,
+    "original_run_id_not_retained": 224,
     "original_run_id_not_applicable": 20,
     "archived_directory_label_not_retained": 22,
     "code_revision_not_retained": 268,
@@ -61,5 +61,31 @@
       "checked_dpi": 135,
       "script": "../scripts/plot_common_efficiency.py"
     }
+  },
+  "submission_candidate": {
+    "public_base_commit": "b5bdd6e3ecd6d0676df22c08d74749b4c579ed92",
+    "pdf_sha256": "bce4debe5db47221ec62ad082dbdac21e5732ed97f9ef97d277edd7a2ca7db04",
+    "tex_sha256": "1d69c6d80f2d37d9569f9e3265519b8cb45098f0b0a719b5ab29277f39b514d7",
+    "numeric_ledger_independently_extracted": 459,
+    "unrounded_table1_rank_markers_checked": 96,
+    "figure_2_and_3_pixel_comparison": "Pass",
+    "body_through_acknowledgments_pages": 5,
+    "pdf_pages": 12,
+    "new_model_runs": 0
+  },
+  "independent_archive_checks": {
+    "main_predictions_rescored": 32000,
+    "matched_budget_predictions_rescored": 48000,
+    "popqa_historical_and_corrected_native_predictions_rescored": 2000,
+    "popqa_historical_source_bytes": "Unverified",
+    "popqa_historical_surviving_content_matches": 1000,
+    "main_and_news_candidate_cap_diagnostics_checked": 6556
+  },
+  "hotpotqa_gpu_reproduction": {
+    "run_date": "2026-11-23",
+    "conditions": 4,
+    "queries_per_condition": 1000,
+    "data": "../res/hotpotqa-gpu-reproduction.json",
+    "status": "Completed before this audit"
   }
 }
