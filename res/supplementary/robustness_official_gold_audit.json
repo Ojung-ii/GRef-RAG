@@ -1,0 +1,124 @@
+{
+  "rule": "Official 2Wiki v1.1 answer-ID aliases and demonyms",
+  "rows_rescored": 30000,
+  "changed_records": {
+    "2wiki/missing_link/delete_0_control": 24,
+    "2wiki/missing_link/delete_25_seed17": 17,
+    "2wiki/missing_link/delete_25_seed29": 20,
+    "2wiki/missing_link/delete_25_seed43": 19,
+    "2wiki/missing_link/delete_50_seed17": 16,
+    "2wiki/missing_link/delete_50_seed29": 17,
+    "2wiki/missing_link/delete_50_seed43": 17,
+    "2wiki/missing_link/delete_100_all": 7,
+    "2wiki/spurious_link/inject_0_control": 24,
+    "2wiki/spurious_link/inject_25_seed17": 24,
+    "2wiki/spurious_link/inject_25_seed29": 24,
+    "2wiki/spurious_link/inject_25_seed43": 24,
+    "2wiki/spurious_link/inject_50_seed17": 24,
+    "2wiki/spurious_link/inject_50_seed29": 24,
+    "2wiki/spurious_link/inject_50_seed43": 24
+  },
+  "source_sha256": {
+    "hotpotqa/missing_link/delete_0_control": "6bb00693180d11cdad5d58c87a4e93a832e3cede64545284288fa8e62af934fa",
+    "2wiki/missing_link/delete_0_control": "0b368179ed56dbdc00e8a1ae8905f9d7f815298d0c03b433d80b8b513c6cf138",
+    "hotpotqa/missing_link/delete_25_seed17": "d429f4b47a999939fbb113cdeda9f020f0b4f2ffe9da9d4b32194c47a5387369",
+    "2wiki/missing_link/delete_25_seed17": "7e415a3bc268e3f3b7298dd771765254a7a74e913d1c47b6333fe520cb6c3192",
+    "hotpotqa/missing_link/delete_25_seed29": "f011aac02359a382637f567896472c671f610c43044c145982a76a11f6a659a3",
+    "2wiki/missing_link/delete_25_seed29": "6365e1988c024dc24047efb46af5462e241b465228355a3c617ffbbf75a3ffaf",
+    "hotpotqa/missing_link/delete_25_seed43": "fbbb10e7bbd075471f3557e56a540ed5cbe9c415fbace25711496e965d2ae139",
+    "2wiki/missing_link/delete_25_seed43": "78d5209dbb90544b30b7f9bec3eccda10e71ca50d9a7bcd28c264ea7ec87c160",
+    "hotpotqa/missing_link/delete_50_seed17": "50c992c72c234b9103c4af45548882f1f82d748bb0e4f58483d7f7524508dec8",
+    "2wiki/missing_link/delete_50_seed17": "0facfab4a9e2f9d810f8d6264110d13144e3228f6f998dd777781e2d7a0014d2",
+    "hotpotqa/missing_link/delete_50_seed29": "807c344c25ee33d43f772415e3dd14abaed9e860276ccd854ee4a0a35b573d5e",
+    "2wiki/missing_link/delete_50_seed29": "dd7baaa2519dd8231d9c23583c0213e9f67919ddea6de0741e861ac68877464c",
+    "hotpotqa/missing_link/delete_50_seed43": "bab092732ffd5ba0aeec35f64133e1dd0a73bf542057dc09f3c5fdc95507fb43",
+    "2wiki/missing_link/delete_50_seed43": "b8b718e61cba681ec25f90eb6698999ce9270ef36bce4ff0950585655218a8cd",
+    "hotpotqa/missing_link/delete_100_all": "1983617c6dc86756cea99d8440693d4a64da372874ecce31a7f91d39606d1fd7",
+    "2wiki/missing_link/delete_100_all": "15e86891f8e33cccc70b7ec347afd007cc6b87882c37ab9e4612d0411cb9a8fc",
+    "hotpotqa/spurious_link/inject_0_control": "093edb4365e940322682a2c38c14eca0a0ab3b41b0886752513aab3fdd09a863",
+    "2wiki/spurious_link/inject_0_control": "b8aac61d28867ec6868f7720472744608979b02b06f35439f5d1b87cc841f061",
+    "hotpotqa/spurious_link/inject_25_seed17": "1458903adb1411e3aaa7ba02bb9ab247c2ecc80afc743d46f603aedbdbe772c6",
+    "2wiki/spurious_link/inject_25_seed17": "6528463f607dbd041d83c86720e0670e35b50d4ef290ad8c7855f6e329d9f0ad",
+    "hotpotqa/spurious_link/inject_25_seed29": "e6e37a6e54f88809fdcba4a206f7d5ac27da788889400798a64c3a26a999e145",
+    "2wiki/spurious_link/inject_25_seed29": "5cf2e630345f4fb78947b761da9ad70b7934d95c1eae89522cfbc5b282ec6fa3",
+    "hotpotqa/spurious_link/inject_25_seed43": "8fe6d9929317c832510ecf2913f3a07565e4fb339134316325349b56c20fd53d",
+    "2wiki/spurious_link/inject_25_seed43": "f8075b275e375443486c70746e6600f080dd1a6637ca7a31ef9868bfd259868a",
+    "hotpotqa/spurious_link/inject_50_seed17": "9b0f6bc90a5697709610e6f4e74e79a8a0e9b60fca945f92d61cae9ede282e28",
+    "2wiki/spurious_link/inject_50_seed17": "a64d9796d58b884e4bf894638b1fa0ab879c6a3691df42a9d8bec8cdd4e5a3f7",
+    "hotpotqa/spurious_link/inject_50_seed29": "c8b123b399f95679c04912acfed513f68bf955967484a64d4521d8bfa010920c",
+    "2wiki/spurious_link/inject_50_seed29": "14f7d7df1d03973e9fe8b1094e80471e613e53c61fb992ae89aadc19d70937c4",
+    "hotpotqa/spurious_link/inject_50_seed43": "f5d69319689da33137fd9097263d8ce5712669964491022ac301fe52b6ef1f27",
+    "2wiki/spurious_link/inject_50_seed43": "0c0f48d0c7750823ef76e6bbb9ab9631e4f46f7ed6f650a07996d15a9f47d366"
+  },
+  "historical": {
+    "retention_percent": {
+      "missing_link/0.25": 94.02394252335847,
+      "missing_link/0.5": 88.38212566797722,
+      "missing_link/1.0": 74.13803662415934,
+      "spurious_link/0.25": 99.51077911157157,
+      "spurious_link/0.5": 98.90630120193246
+    },
+    "f1_change_points": {
+      "missing_link/0.25": -1.2924356422731034,
+      "missing_link/0.5": -2.6637680511209925,
+      "missing_link/1.0": -5.993618115630499,
+      "spurious_link/0.25": -0.06279942279942229,
+      "spurious_link/0.5": -0.1276657552973339
+    },
+    "dataset_retention_percent": {
+      "hotpotqa/missing_link/0.25": 97.20279152104641,
+      "2wiki/missing_link/0.25": 90.84509352567052,
+      "hotpotqa/missing_link/0.5": 93.23991761044418,
+      "2wiki/missing_link/0.5": 83.52433372551025,
+      "hotpotqa/missing_link/1.0": 84.39257025583825,
+      "2wiki/missing_link/1.0": 63.88350299248043,
+      "hotpotqa/spurious_link/0.25": 100.14708553059279,
+      "2wiki/spurious_link/0.25": 98.87447269255034,
+      "hotpotqa/spurious_link/0.5": 100.44013322385572,
+      "2wiki/spurious_link/0.5": 97.3724691800092
+    },
+    "control_f1_percent": {
+      "hotpotqa/missing_link": 39.14440621298206,
+      "2wiki/missing_link": 16.274558774558777,
+      "hotpotqa/spurious_link": 39.14440621298206,
+      "2wiki/spurious_link": 16.274558774558777
+    },
+    "mean_control_f1_percent": 27.70948249377042
+  },
+  "corrected": {
+    "retention_percent": {
+      "missing_link/0.25": 93.44722466881085,
+      "missing_link/0.5": 87.70845160453858,
+      "missing_link/1.0": 72.63071962150264,
+      "spurious_link/0.25": 99.5533155833073,
+      "spurious_link/0.5": 99.00560211601915
+    },
+    "f1_change_points": {
+      "missing_link/0.25": -1.4548800867175475,
+      "missing_link/0.5": -2.8919902733432146,
+      "missing_link/1.0": -6.499284782297166,
+      "spurious_link/0.25": -0.06279942279942229,
+      "spurious_link/0.5": -0.1276657552973339
+    },
+    "dataset_retention_percent": {
+      "hotpotqa/missing_link/0.25": 97.20279152104641,
+      "2wiki/missing_link/0.25": 89.69165781657529,
+      "hotpotqa/missing_link/0.5": 93.23991761044418,
+      "2wiki/missing_link/0.5": 82.17698559863297,
+      "hotpotqa/missing_link/1.0": 84.39257025583825,
+      "2wiki/missing_link/1.0": 60.86886898716702,
+      "hotpotqa/spurious_link/0.25": 100.14708553059279,
+      "2wiki/spurious_link/0.25": 98.95954563602179,
+      "hotpotqa/spurious_link/0.5": 100.44013322385572,
+      "2wiki/spurious_link/0.5": 97.57107100818257
+    },
+    "control_f1_percent": {
+      "hotpotqa/missing_link": 39.14440621298206,
+      "2wiki/missing_link": 17.605251082251083,
+      "hotpotqa/spurious_link": 39.14440621298206,
+      "2wiki/spurious_link": 17.605251082251083
+    },
+    "mean_control_f1_percent": 28.374828647616575
+  },
+  "new_generation": false
+}

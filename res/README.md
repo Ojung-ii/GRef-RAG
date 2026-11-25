@@ -4,6 +4,10 @@ The tables contain frozen experiment outputs and paper values. EM, F1, and recal
 
 The supplementary ledgers cover the ablations, alternate generator, news, mention-link robustness, native QA, and sensitivity studies. Use the [table and figure map](../reproducibility/RUN_MANIFEST.md#manuscript-map) to locate each result and its run record.
 
+The Llama scores use the original 8,000 predictions, rescored with the official benchmark references. On 2Wiki, 91 score records change after adding the official aliases and demonyms. The previous scores and paired statistics are kept in the historical ledgers. [Scoring audit](supplementary/llama_official_gold_audit.json) · [Historical statistics](supplementary/llama_statistics_reference_historical.csv)
+
+The link-perturbation scores use the original 30,000 predictions, including both suite-specific controls. Official 2Wiki aliases and demonyms change 305 score records. [Scoring audit](supplementary/robustness_official_gold_audit.json) · [Historical scores](supplementary/robustness_query_scores_historical.csv)
+
 | File | Contents |
 | --- | --- |
 | `common_prompt.csv` | Common-prompt QA and token table |

@@ -1,0 +1,99 @@
+{
+  "changed_records": {
+    "2wiki/gref-rag": 51,
+    "2wiki/kg2rag": 40
+  },
+  "rescored_records": 8000,
+  "conditions": {
+    "hotpotqa": {
+      "kg2rag": {
+        "em": 0.376,
+        "f1": 0.47747732906817597
+      },
+      "gref-rag": {
+        "em": 0.435,
+        "f1": 0.5499165116400411
+      },
+      "pair": {
+        "delta_f1": 0.07243918257186512,
+        "ci_low": 0.04380628257311755,
+        "ci_high": 0.10041124262593719
+      }
+    },
+    "2wiki": {
+      "kg2rag": {
+        "em": 0.222,
+        "f1": 0.2697357106363656
+      },
+      "gref-rag": {
+        "em": 0.329,
+        "f1": 0.38784004208285144
+      },
+      "pair": {
+        "delta_f1": 0.11810433144648584,
+        "ci_low": 0.08643725318632624,
+        "ci_high": 0.15082507557046695
+      }
+    },
+    "musique": {
+      "kg2rag": {
+        "em": 0.119,
+        "f1": 0.17164152461384255
+      },
+      "gref-rag": {
+        "em": 0.159,
+        "f1": 0.22441069538160655
+      },
+      "pair": {
+        "delta_f1": 0.052769170767763995,
+        "ci_low": 0.030286006368933034,
+        "ci_high": 0.07553827399373893
+      }
+    },
+    "popqa": {
+      "kg2rag": {
+        "em": 0.433,
+        "f1": 0.5629732608894373
+      },
+      "gref-rag": {
+        "em": 0.394,
+        "f1": 0.5573540848040848
+      },
+      "pair": {
+        "delta_f1": -0.005619176085352557,
+        "ci_low": -0.024513648141074616,
+        "ci_high": 0.013088822496947492
+      }
+    }
+  },
+  "macro": {
+    "delta_f1": 0.0594233771751906,
+    "ci_low": 0.046008512367172925,
+    "ci_high": 0.07269269134160752
+  },
+  "source_context_manifest_sha256": "cf5331a7da10e2c386716940f9fa4b62f51b13d074eac08cdd3c5982552350bb",
+  "source_predictions_sha256": "24acf70b30e6050cdd3c0f18f7fb50a9181e801f0fa89f2403967d90ada0d5ad",
+  "source_historical_metrics_sha256": "9e93e5b7775d5e0ecccbfb2770654c38b30a45c82d6c4b8c9cf29f80b66a89e5",
+  "historical_scores_sha256": "ba8eda55bafe6467799407acefc44154b7c4d8768a2f5338ffdce4b5d6f79ca5",
+  "historical_stats_sha256": "20a4ed95859f2c1323533260e9c38dfbb3d910e3bce880259a1ae640b1c1cf21",
+  "official_reference": "Official 2Wiki v1.1 answer-ID aliases and demonyms",
+  "new_generation": false,
+  "main_context_hash_matches": {
+    "hotpotqa": {
+      "gref-rag": 1000,
+      "kg2rag": 1000
+    },
+    "2wiki": {
+      "gref-rag": 1000,
+      "kg2rag": 1000
+    },
+    "musique": {
+      "gref-rag": 1000,
+      "kg2rag": 1000
+    },
+    "popqa": {
+      "gref-rag": 1000,
+      "kg2rag": 1000
+    }
+  }
+}

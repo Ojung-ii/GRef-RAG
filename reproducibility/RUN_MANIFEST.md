@@ -19,9 +19,9 @@ The [machine-readable manifest](run_manifest.csv) connects tables, figures, and 
 | Table 2 | `timing.*` identifies the retrieval and QA timing cohorts. `efficiency.*` links the aggregates to timings and Table 1. [Timing components](../res/supplementary/online_timing_components.csv) · [Efficiency table](../res/online_efficiency.csv) |
 | Table 3 | `ablation.*`. The primary Full and semantic-comparison Full are distinct inputs. [Ablation scores](../res/supplementary/ablation_query_scores.csv) · [Paired reference](../res/supplementary/ablation_statistics_reference.csv) |
 | Table 4(a), Table 7 | `budget.*` and `paired.matched.*`. [Score ledger](../res/matched_budget_scores.csv) · [Paired and token results](../res/matched_budget_summary.csv) |
-| Table 4(b), Table 6 | `llama.*`, `paired.llama`, and common-prompt inputs. [Llama scores](../res/supplementary/llama_query_scores.csv) |
+| Table 4(b), Table 6 | `llama.*`, `paired.llama`, and common-prompt inputs. [Official-gold Llama scores](../res/supplementary/llama_query_scores.csv) · [Historical Llama scores](../res/supplementary/llama_query_scores_historical.csv) |
 | Table 4(c) | `news.*` and `paired.news`. [News QA and bridge scores](../res/supplementary/news_query_scores.csv) · [Holm family](../res/supplementary/news_statistics_reference.csv) |
-| Table 4(d) | `robust.*` and `paired.robust`. [Link perturbation scores](../res/supplementary/robustness_query_scores.csv) · [Control and seed map](../res/supplementary/robustness_conditions.csv) |
+| Table 4(d) | `robust.*` and `paired.robust`. [Official-gold link perturbation scores](../res/supplementary/robustness_query_scores.csv) · [Historical scores](../res/supplementary/robustness_query_scores_historical.csv) · [Control and seed map](../res/supplementary/robustness_conditions.csv) |
 | Table 5 | `protocol`. [Common config](../configs/common.yaml) · [Native config](../configs/native.yaml) · [Evaluation protocol](../docs/evaluation.md) |
 | Table 8 | `native.*`. [Native query scores and retained token counts](../res/supplementary/native_query_scores.csv) · [Native aggregates](../res/native_prompt.csv) · [Corrected GRef-RAG PopQA records](../res/popqa-native-reference.jsonl) |
 | Table 9 | `render.*`. [Fixed-bundle rendering-budget scores](../res/supplementary/rendering_query_scores.csv) |

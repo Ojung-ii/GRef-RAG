@@ -64,14 +64,16 @@
   },
   "submission_candidate": {
     "public_base_commit": "b5bdd6e3ecd6d0676df22c08d74749b4c579ed92",
-    "pdf_sha256": "bce4debe5db47221ec62ad082dbdac21e5732ed97f9ef97d277edd7a2ca7db04",
-    "tex_sha256": "1d69c6d80f2d37d9569f9e3265519b8cb45098f0b0a719b5ab29277f39b514d7",
+    "pdf_sha256": "b536e9704bad863e11267fc5aaa5a7ec1b535e8b013caf960a105a07bbdb02fd",
+    "tex_sha256": "6892535471704d68cb5129ccbc6f7a0a333f33e2042c0c4933e21fb150e40f47",
     "numeric_ledger_independently_extracted": 459,
     "unrounded_table1_rank_markers_checked": 96,
     "figure_2_and_3_pixel_comparison": "Pass",
     "body_through_acknowledgments_pages": 5,
     "pdf_pages": 12,
-    "new_model_runs": 0
+    "new_model_runs": 0,
+    "source_archive_sha256": "d27ce5bc7243a530335ac29ada8130d17e0bab1401b3f26f69b4af7e082cb103",
+    "numeric_ledger_values_corrected": 12
   },
   "independent_archive_checks": {
     "main_predictions_rescored": 32000,
@@ -79,7 +81,14 @@
     "popqa_historical_and_corrected_native_predictions_rescored": 2000,
     "popqa_historical_source_bytes": "Unverified",
     "popqa_historical_surviving_content_matches": 1000,
-    "main_and_news_candidate_cap_diagnostics_checked": 6556
+    "main_and_news_candidate_cap_diagnostics_checked": 6556,
+    "llama_predictions_rescored": 8000,
+    "llama_scores_corrected": 91,
+    "llama_saved_main_context_matches": 8000,
+    "mention_link_perturbation_predictions_rescored": 30000,
+    "mention_link_perturbation_scores_corrected": 305,
+    "other_2wiki_ablation_sensitivity_rendering_rows_rescored": 25000,
+    "other_2wiki_scores_corrected": 0
   },
   "hotpotqa_gpu_reproduction": {
     "run_date": "2026-11-23",
